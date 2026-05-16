@@ -296,25 +296,74 @@ export default function Home() {
     <main style={{ background: D, color: "#F5F3EE", margin: 0, padding: 0, fontFamily: "Georgia,serif", overflowX: "hidden" }}>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Person",
-          "name": "Oleksandr Peters",
-          "jobTitle": "Founder & CEO",
-          "image": "https://tradeistanbulgroup.com/founder.jpg",
-          "url": "https://tradeistanbulgroup.com/founder",
-          "knowsAbout": ["Turkish Export","B2B Wholesale","Furniture","Apparel","Footwear","Fabrics","Cosmetics","Perfumes","Home Textiles","Food & Beverage","Lighting","Building Materials","Home Appliances","Cleaning & Hygiene","Auto Parts","Tableware","Jewelry","Business Tourism","Medical Tourism","Franchise","Tech Export"],
-          "sameAs": ["https://linkedin.com/company/trade-istanbul-group"],
-          "worksFor": {
-            "@type": "Organization",
-            "name": "Trade Istanbul Group LLC",
-            "url": "https://tradeistanbulgroup.com",
-            "address": { "@type": "PostalAddress", "addressRegion": "Florida", "addressCountry": "US" },
-            "areaServed": ["UK","IT","ES","FR","DE","PL","US","CA","MX","PA","CO","BR","AR","PE","CL","SA","AE","EG","ZA","NG","GH","KE","IN","KR","VN"]
-          },
-          "description": "Personal Guarantor of Every Transaction. Premium Turkish B2B Export & Wholesale."
-        })
-      }} />
+  __html: JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Oleksandr Peters",
+    "jobTitle": "Founder & CEO",
+    "image": "https://tradeistanbulgroup.com/founder.jpg",
+    "url": "https://tradeistanbulgroup.com/founder",
+    "knowsAbout": ["Turkish Export","B2B Wholesale","Furniture","Apparel","Footwear","Fabrics","Cosmetics","Perfumes","Home Textiles","Food & Beverage","Lighting","Building Materials","Home Appliances","Cleaning & Hygiene","Auto Parts","Tableware","Jewelry","Business Club","Business Tours","Medical Tourism","Tech Hub","Franchise Hub","CryptoCharm Official"],
+    "sameAs": ["https://linkedin.com/company/trade-istanbul-group","https://instagram.com/tradeistanbulgroup","https://facebook.com/tradeistanbulgroup","https://youtube.com/@tradeistanbulgroup"],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Trade Istanbul Group LLC",
+      "url": "https://tradeistanbulgroup.com",
+      "address": { "@type": "PostalAddress", "addressRegion": "Florida", "addressCountry": "US" },
+      "areaServed": ["UK","IT","ES","FR","DE","PL","US","CA","MX","PA","CO","BR","AR","PE","CL","SA","AE","EG","ZA","NG","GH","KE","IN","KR","VN"]
+    },
+    "description": "Personal Guarantor of Every Transaction. Premium Turkish B2B Export & Wholesale."
+  })
+}} />
+
+<script type="application/ld+json" dangerouslySetInnerHTML={{
+  __html: JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How to buy Turkish products wholesale?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Contact Trade Istanbul Group via WhatsApp. Oleksandr Peters personally verifies every factory and guarantees every shipment from Turkey."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What products does Trade Istanbul Group export?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Trade Istanbul Group exports 15 product categories: Furniture, Apparel, Footwear, Fabrics, Cosmetics, Perfumes, Home Textiles, Food & Beverage, Lighting, Building Materials, Home Appliances, Cleaning & Hygiene, Auto Parts, Tableware, and Jewelry."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which countries does Trade Istanbul Group ship to?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We ship to 40+ countries including USA, Brazil, Mexico, Germany, UK, UAE, Saudi Arabia, Nigeria, South Africa and more."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is Oleksandr Peters?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oleksandr Peters is the Founder & CEO of Trade Istanbul Group LLC, registered in Florida, USA. He personally verifies every Turkish manufacturer and provides a personal guarantee for every transaction."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the minimum order for Turkish wholesale?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Minimum orders vary by category. Contact us via WhatsApp for specific MOQ information for each product category."
+        }
+      }
+    ]
+  })
+}} />
 
       <CookieBanner />
 
