@@ -69,10 +69,10 @@ const NAV_MENU = {
 }
 
 const SOCIAL_LINKS: Record<string, string> = {
-  LinkedIn: "https://linkedin.com/company/trade-istanbul-group",
-  Facebook: "https://facebook.com/tradeistanbulgroup",
-  Instagram: "https://instagram.com/tradeistanbulgroup",
-  YouTube: "https://youtube.com/@tradeistanbulgroup",
+  LinkedIn: "https://linkedin.com/company/trade-istanbul-hub",
+  Facebook: "https://facebook.com/tradeistanbulhub",
+  Instagram: "https://instagram.com/tradeistanbulhub",
+  YouTube: "https://youtube.com/@tradeistanbulhub",
 }
 
 const WA = "https://wa.me/905464151011?text=Hello%20Oleksandr%2C%20I%20am%20interested%20in%20wholesale%20cooperation%20with%20Trade%20Istanbul%20Group."
@@ -301,14 +301,14 @@ export default function Home() {
     "@type": "Person",
     "name": "Oleksandr Peters",
     "jobTitle": "Founder & CEO",
-    "image": "https://tradeistanbulgroup.com/founder.jpg",
-    "url": "https://tradeistanbulgroup.com/founder",
+    "image": "https://tradeistanbulhub.com/founder.jpg",
+    "url": "https://tradeistanbulhub.com/founder",
     "knowsAbout": ["Turkish Export","B2B Wholesale","Furniture","Apparel","Footwear","Fabrics","Cosmetics","Perfumes","Home Textiles","Food & Beverage","Lighting","Building Materials","Home Appliances","Cleaning & Hygiene","Auto Parts","Tableware","Jewelry","Business Club","Business Tours","Medical Tourism","Tech Hub","Franchise Hub","CryptoCharm Official"],
-    "sameAs": ["https://linkedin.com/company/trade-istanbul-group","https://instagram.com/tradeistanbulgroup","https://facebook.com/tradeistanbulgroup","https://youtube.com/@tradeistanbulgroup"],
+    "sameAs": ["https://linkedin.com/company/trade-istanbul-hub","https://instagram.com/tradeistanbulhub","https://facebook.com/tradeistanbulhub","https://youtube.com/@tradeistanbulhub"],
     "worksFor": {
       "@type": "Organization",
-      "name": "Trade Istanbul Group LLC",
-      "url": "https://tradeistanbulgroup.com",
+      "name": "Trade Istanbul Hub LLC",
+      "url": "https://tradeistanbulhub.com",
       "address": { "@type": "PostalAddress", "addressRegion": "Florida", "addressCountry": "US" },
       "areaServed": ["UK","IT","ES","FR","DE","PL","US","CA","MX","PA","CO","BR","AR","PE","CL","SA","AE","EG","ZA","NG","GH","KE","IN","KR","VN"]
     },
@@ -326,20 +326,20 @@ export default function Home() {
         "name": "How to buy Turkish products wholesale?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Contact Trade Istanbul Group via WhatsApp. Oleksandr Peters personally verifies every factory and guarantees every shipment from Turkey."
+          "text": "Contact Trade Istanbul Hub via WhatsApp. Oleksandr Peters personally verifies every factory and guarantees every shipment from Turkey."
         }
       },
       {
         "@type": "Question",
-        "name": "What products does Trade Istanbul Group export?",
+        "name": "What products does Trade Istanbul Hub export?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Trade Istanbul Group exports 15 product categories: Furniture, Apparel, Footwear, Fabrics, Cosmetics, Perfumes, Home Textiles, Food & Beverage, Lighting, Building Materials, Home Appliances, Cleaning & Hygiene, Auto Parts, Tableware, and Jewelry."
+          "text": "Trade Istanbul Hub exports 15 product categories: Furniture, Apparel, Footwear, Fabrics, Cosmetics, Perfumes, Home Textiles, Food & Beverage, Lighting, Building Materials, Home Appliances, Cleaning & Hygiene, Auto Parts, Tableware, and Jewelry."
         }
       },
       {
         "@type": "Question",
-        "name": "Which countries does Trade Istanbul Group ship to?",
+        "name": "Which countries does Trade Istanbul Hub ship to?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "We ship to 40+ countries including USA, Brazil, Mexico, Germany, UK, UAE, Saudi Arabia, Nigeria, South Africa and more."
@@ -350,7 +350,7 @@ export default function Home() {
         "name": "Who is Oleksandr Peters?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Oleksandr Peters is the Founder & CEO of Trade Istanbul Group LLC, registered in Florida, USA. He personally verifies every Turkish manufacturer and provides a personal guarantee for every transaction."
+          "text": "Oleksandr Peters is the Founder & CEO of Trade Istanbul Hub LLC, registered in Florida, USA. He personally verifies every Turkish manufacturer and provides a personal guarantee for every transaction."
         }
       },
       {
@@ -380,7 +380,7 @@ export default function Home() {
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <img src="/logo.png" alt="TIG" style={{ height: isMobile ? 28 : 32, width: "auto" }} onError={e => { e.currentTarget.style.display = "none" }} />
             {!isMobile && (
-              <span style={{ fontFamily: "Georgia,serif", fontSize: 17, letterSpacing: 7, color: G, textTransform: "uppercase", fontWeight: 400 }}>Trade Istanbul Group</span>
+              <span style={{ fontFamily: "Georgia,serif", fontSize: 17, letterSpacing: 7, color: G, textTransform: "uppercase", fontWeight: 400 }}>Trade Istanbul Hub</span>
             )}
             {isMobile && (
               <span style={{ fontFamily: "Georgia,serif", fontSize: 13, letterSpacing: 2, color: G, textTransform: "uppercase", fontWeight: 400 }}>TIG</span>
@@ -414,7 +414,7 @@ export default function Home() {
           <div>
             <div style={{ textAlign: "center", padding: "20px 16px 16px", borderBottom: "1px solid rgba(201,168,76,0.08)" }}>
               <div style={{ fontSize: 8, letterSpacing: 3, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, lineHeight: 2 }}>
-                Trade Istanbul Group LLC<br />B2B Wholesale · Istanbul · Florida, USA
+                Trade Istanbul Hub LLC<br />B2B Wholesale · Istanbul · Florida, USA
               </div>
             </div>
             <motion.div
@@ -423,7 +423,7 @@ export default function Home() {
               onClick={() => window.location.href = '/founder'}
               style={{ cursor: "pointer", width: "100%", position: "relative" }}>
               <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden" }}>
-                <img src="/founder.jpg" alt="Oleksandr Peters — Founder Trade Istanbul Group"
+                <img src="/founder.jpg" alt="Oleksandr Peters — Founder Trade Istanbul Hub"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }} />
               </div>
             </motion.div>
@@ -433,7 +433,7 @@ export default function Home() {
             <div style={{ padding: "24px 16px" }}>
               <p style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", marginBottom: 12, fontFamily: MONO, fontWeight: 600 }}>Premium Turkish Export · Managed B2B Sourcing</p>
               <h2 style={{ fontFamily: "Georgia,serif", fontSize: 28, fontWeight: 300, color: "#F5F3EE", marginBottom: 4, lineHeight: 1.1 }}>Oleksandr Peters</h2>
-              <div style={{ fontSize: 9, letterSpacing: 2, color: PEARL, textTransform: "uppercase", fontFamily: MONO, marginBottom: 16, fontWeight: 500 }}>Founder & CEO · Trade Istanbul Group LLC</div>
+              <div style={{ fontSize: 9, letterSpacing: 2, color: PEARL, textTransform: "uppercase", fontFamily: MONO, marginBottom: 16, fontWeight: 500 }}>Founder & CEO · Trade Istanbul Hub LLC</div>
               <p style={{ fontSize: 13, color: PEARL, lineHeight: 1.8, fontFamily: "Georgia,serif", marginBottom: 20, fontStyle: "italic", fontWeight: 400 }}>
                 "Every factory verified personally. Every shipment backed by my name. This is not a marketplace — this is a partnership built on trust."
               </p>
@@ -464,7 +464,7 @@ export default function Home() {
           <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
               <div style={{ fontSize: 10, letterSpacing: 6, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>
-                Trade Istanbul Group LLC · B2B Wholesale · Istanbul, Turkey · Florida, USA
+                Trade Istanbul Hub LLC · B2B Wholesale · Istanbul, Turkey · Florida, USA
               </div>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "420px 1fr", gap: 72, alignItems: "flex-start" }}>
@@ -503,7 +503,7 @@ export default function Home() {
                   Oleksandr Peters
                 </motion.h2>
 
-                <div style={{ fontSize: 11, letterSpacing: 2, color: PEARL, textTransform: "uppercase", fontFamily: MONO, marginBottom: 24, fontWeight: 500 }}>Founder & CEO · Trade Istanbul Group LLC</div>
+                <div style={{ fontSize: 11, letterSpacing: 2, color: PEARL, textTransform: "uppercase", fontFamily: MONO, marginBottom: 24, fontWeight: 500 }}>Founder & CEO · Trade Istanbul Hub LLC</div>
                 <p style={{ fontSize: 14, color: PEARL, lineHeight: 1.85, fontFamily: "Georgia,serif", marginBottom: 24, fontStyle: "italic", fontWeight: 400, maxWidth: 400 }}>
                   "Every factory verified personally. Every shipment backed by my name. This is not a marketplace — this is a partnership built on trust."
                 </p>
@@ -588,9 +588,9 @@ export default function Home() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           {isMobile ? (
             <div style={{ marginBottom: 24 }}>
-              <div style={{ fontFamily: "Georgia,serif", fontSize: 16, color: G, marginBottom: 8, letterSpacing: 2 }}>Trade Istanbul Group</div>
+              <div style={{ fontFamily: "Georgia,serif", fontSize: 16, color: G, marginBottom: 8, letterSpacing: 2 }}>Trade Istanbul Hub</div>
               <div style={{ fontSize: 9, letterSpacing: 1, color: PEARL, lineHeight: 1.7, fontFamily: MONO, marginBottom: 6, fontWeight: 500, textTransform: "uppercase" }}>Premium B2B export & wholesale. 15 categories. 500+ manufacturers.</div>
-              <div style={{ fontSize: 9, color: G, fontFamily: MONO, letterSpacing: 2, marginBottom: 14, textTransform: "uppercase" }}>Trade Istanbul Group LLC · Florida, USA</div>
+              <div style={{ fontSize: 9, color: G, fontFamily: MONO, letterSpacing: 2, marginBottom: 14, textTransform: "uppercase" }}>Trade Istanbul Hub LLC · Florida, USA</div>
               <a href={WA} target="_blank" style={{ display: "inline-block", padding: "9px 20px", border: `1px solid ${G}`, color: G, fontSize: 9, letterSpacing: 2, textDecoration: "none", fontFamily: MONO, textTransform: "uppercase", marginBottom: 20 }}>WhatsApp</a>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 20 }}>
                 <div>
@@ -616,9 +616,9 @@ export default function Home() {
             <div>
               <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48, marginBottom: 48 }}>
                 <div>
-                  <div style={{ fontFamily: "Georgia,serif", fontSize: 18, color: G, marginBottom: 12, letterSpacing: 2 }}>Trade Istanbul Group</div>
+                  <div style={{ fontFamily: "Georgia,serif", fontSize: 18, color: G, marginBottom: 12, letterSpacing: 2 }}>Trade Istanbul Hub</div>
                   <div style={{ fontSize: 11, letterSpacing: 1, color: PEARL, lineHeight: 1.8, fontFamily: MONO, marginBottom: 8, maxWidth: 240, fontWeight: 500, textTransform: "uppercase" }}>Premium B2B export & wholesale. 15 categories. 500+ manufacturers.</div>
-                  <div style={{ fontSize: 10, color: G, fontFamily: MONO, letterSpacing: 2, marginBottom: 20, textTransform: "uppercase", fontWeight: 500 }}>Trade Istanbul Group LLC · Florida, USA</div>
+                  <div style={{ fontSize: 10, color: G, fontFamily: MONO, letterSpacing: 2, marginBottom: 20, textTransform: "uppercase", fontWeight: 500 }}>Trade Istanbul Hub LLC · Florida, USA</div>
                   <a href={WA} target="_blank" style={{ display: "inline-block", padding: "10px 24px", border: `1px solid ${G}`, color: G, fontSize: 9, letterSpacing: 2, textDecoration: "none", fontFamily: MONO, textTransform: "uppercase", transition: "all .25s" }}
                     onMouseEnter={e => { e.currentTarget.style.background = G; e.currentTarget.style.color = D }}
                     onMouseLeave={e => { e.currentTarget.style.background = "none"; e.currentTarget.style.color = G }}>
@@ -662,7 +662,7 @@ export default function Home() {
           )}
 
           <div style={{ borderTop: "1px solid rgba(201,168,76,0.04)", paddingTop: 16, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
-            <div style={{ fontSize: isMobile ? 8 : 9, color: G, letterSpacing: 2, fontFamily: MONO, textTransform: "uppercase", fontWeight: 500 }}>© 2025 Trade Istanbul Group LLC · Florida, USA</div>
+            <div style={{ fontSize: isMobile ? 8 : 9, color: G, letterSpacing: 2, fontFamily: MONO, textTransform: "uppercase", fontWeight: 500 }}>© 2025 Trade Istanbul Hub LLC · Florida, USA</div>
             <div style={{ fontSize: isMobile ? 8 : 9, color: PEARL, fontFamily: MONO, fontWeight: 500 }}>Founder: <span style={{ color: G }}>Oleksandr Peters</span></div>
           </div>
         </div>
