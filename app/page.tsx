@@ -400,7 +400,7 @@ export default function Home() {
               transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
               onClick={() => window.location.href = '/founder'}
               style={{ cursor: "pointer", width: "100%", position: "relative" }}>
-              <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden" }}>
+              <div style={{ width: "100%", aspectRatio: "3/4", overflow: "hidden" }}>
                 <img src="/founder.jpg" alt="Oleksandr Peters — Founder Trade Istanbul Hub"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 10%", display: "block" }} />
               </div>
@@ -507,7 +507,7 @@ export default function Home() {
                   ))}
                 </div>
 
-                <div style={{ borderTop: "1px solid rgba(201,168,76,0.08)", paddingTop: 28, paddingBottom: 12, display: "flex", gap: 36, flexWrap: "wrap", alignItems: "center" }}>
+                <div style={{ borderTop: "1px solid rgba(201,168,76,0.08)", paddingTop: 16, paddingBottom: 16, display: "flex", gap: 36, flexWrap: "wrap", alignItems: "center" }}>
                   {[["15","Product Categories"],["5","Service Verticals"],["500+","Manufacturers"],["40+","Countries"]].map(([n,l]) => (
                     <div key={l} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minWidth: 80 }}>
                       <div style={{ fontFamily: "Georgia,serif", fontSize: 36, color: G, fontWeight: 300, lineHeight: 1, textAlign: "center" }}>{n}</div>
@@ -522,7 +522,7 @@ export default function Home() {
       </section>
 
       {/* SERVICES */}
-      <section style={{ padding: isMobile ? "16px 16px 32px" : "16px 48px 48px" }}>
+      <section style={{ padding: isMobile ? "16px 16px 32px" : "4px 48px 48px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: isMobile ? 14 : 24 }}>
             <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Services</span>
@@ -573,7 +573,7 @@ export default function Home() {
       ))}
 
       {/* SOURCING SHOWCASE — минималистичный CTA блок */}
-      <section style={{ padding: isMobile ? "48px 16px 56px" : "80px 48px 96px", textAlign: "center" }}>
+      <section style={{ padding: isMobile ? "48px 16px 56px" : "48px 48px 56px", textAlign: "center" }}>
         <div style={{ maxWidth: 700, margin: "0 auto" }}>
           <div style={{ fontSize: 9, letterSpacing: 6, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, marginBottom: 24 }}>
             Sourcing Showcase
@@ -582,7 +582,7 @@ export default function Home() {
             Verified. Inspected. Delivered.
           </h2>
           <p style={{ fontSize: isMobile ? 10 : 11, color: "rgba(229,227,238,0.45)", fontFamily: MONO, letterSpacing: 2, lineHeight: 1.9, marginBottom: 40, textTransform: "uppercase" }}>
-            A visual archive of our verified manufacturing processes,<br />textile mills, and quality control inspections.
+            A visual archive of our verified manufacturing processes,<br />factories, workshops, and quality control inspections.
           </p>
           <a href="/gallery"
             style={{ display: "inline-block", padding: isMobile ? "12px 28px" : "14px 40px", border: `1px solid ${G}`, color: G, fontSize: 9, letterSpacing: 3, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, fontWeight: 600, transition: "all .25s" }}
