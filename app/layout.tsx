@@ -1,29 +1,29 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Trade Istanbul Group — Premium Turkish B2B Export & Wholesale",
+  title: "Trade istanbul hub — Premium Turkish B2B Export & Wholesale",
   description: "Managed B2B Hub. 15 product categories, 500+ verified Turkish manufacturers. Personal guarantee by Oleksandr Peters. Furniture, Apparel, Cosmetics, Auto Parts and more.",
   keywords: "Turkish wholesale, B2B export Turkey, furniture wholesale Istanbul, Turkish manufacturers, trade Istanbul",
   authors: [{ name: "Oleksandr Peters" }],
-  creator: "Trade Istanbul Group LLC",
-  publisher: "Trade Istanbul Group LLC",
+  creator: "Trade istanbul hub LLC",
+  publisher: "Trade istanbul hub LLC",
   robots: "index, follow",
   openGraph: {
     type: "website",
-    url: "https://tradeistanbulgroup.com",
-    title: "Trade Istanbul Group — Premium Turkish B2B Export",
+    url: "https://tradeistanbulhub.com",
+    title: "Trade istanbul hub — Premium Turkish B2B Export",
     description: "15 product categories. 500+ verified manufacturers. Personal guarantee by Oleksandr Peters.",
-    siteName: "Trade Istanbul Group",
-    images: [{ url: "https://tradeistanbulgroup.com/founder.jpg", width: 1200, height: 630, alt: "Oleksandr Peters — Trade Istanbul Group" }],
+    siteName: "Trade istanbul hub",
+    images: [{ url: "https://tradeistanbulhub.com/founder.jpg", width: 1200, height: 630, alt: "Oleksandr Peters — Trade istanbul hub" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trade Istanbul Group — Premium Turkish B2B Export",
+    title: "Trade istanbul hub — Premium Turkish B2B Export",
     description: "15 product categories. 500+ verified manufacturers.",
-    images: ["https://tradeistanbulgroup.com/founder.jpg"],
+    images: ["https://tradeistanbulhub.com/founder.jpg"],
   },
   alternates: {
-    canonical: "https://tradeistanbulgroup.com",
+    canonical: "https://tradeistanbulhub.com",
   },
 };
 
@@ -42,16 +42,16 @@ export default function RootLayout({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "@id": "https://tradeistanbulgroup.com/#organization",
-            "name": "Trade Istanbul Group LLC",
-            "url": "https://tradeistanbulgroup.com",
-            "logo": "https://tradeistanbulgroup.com/logo.png",
+            "@id": "https://tradeistanbulhub.com/#organization",
+            "name": "Trade istanbul hub LLC",
+            "url": "https://tradeistanbulhub.com",
+            "logo": "https://tradeistanbulhub.com/logo.png",
             "founder": {
               "@type": "Person",
-              "@id": "https://tradeistanbulgroup.com/#founder",
+              "@id": "https://tradeistanbulhub.com/#founder",
               "name": "Oleksandr Peters",
               "jobTitle": "Founder & CEO",
-              "url": "https://tradeistanbulgroup.com/founder",
+              "url": "https://tradeistanbulhub.com/founder",
               "knowsAbout": [
                 "Furniture","Apparel","Footwear","Fabrics","Cosmetics","Perfumes",
                 "Home Textiles","Food & Beverage","Lighting","Building Materials",
@@ -68,10 +68,10 @@ export default function RootLayout({
             },
             "areaServed": ["UK","IT","ES","FR","DE","PL","US","CA","MX","PA","CO","BR","AR","PE","CL","SA","AE","EG","ZA","NG","GH","KE","IN","KR","VN"],
             "sameAs": [
-              "https://linkedin.com/company/trade-istanbul-group",
-              "https://instagram.com/tradeistanbulgroup",
-              "https://facebook.com/tradeistanbulgroup",
-              "https://youtube.com/@tradeistanbulgroup"
+              "https://linkedin.com/company/trade-istanbul-hub",
+              "https://instagram.com/tradeistanbulhub",
+              "https://facebook.com/tradeistanbulhub",
+              "https://youtube.com/@tradeistanbulhub"
             ]
           })
         }} />
