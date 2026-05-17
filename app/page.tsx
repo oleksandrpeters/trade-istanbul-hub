@@ -1,4 +1,4 @@
- 'use client'
+'use client'
 import { useEffect, useState } from 'react'
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion'
 
@@ -68,7 +68,6 @@ const NAV_MENU = {
   ],
 }
 
-// Бизнес соцсети — для шапки, футера, Social Media меню
 const SOCIAL_LINKS: Record<string, string> = {
   LinkedIn: "https://linkedin.com/company/trade-istanbul-hub",
   Facebook: "https://facebook.com/TradeIstanbulHub",
@@ -76,7 +75,6 @@ const SOCIAL_LINKS: Record<string, string> = {
   YouTube: "https://youtube.com/@TRADEISTANBULHUB",
 }
 
-// Личные соцсети основателя — для карточки на главной
 const FOUNDER_SOCIAL: Record<string, string> = {
   LinkedIn: "https://linkedin.com/in/oleksandrpeters",
   Facebook: "https://facebook.com/OleksandrPeters",
@@ -89,16 +87,6 @@ const G = "#C9A84C"
 const D = "#0A0A0A"
 const PEARL = "#E5E3EE"
 const MONO = "'Courier New', monospace"
-
-// Showcase photos — замени на реальные когда будут готовы
-const SHOWCASE_PHOTOS = [
-  { src: "/banners/furniture.jpg", label: "Furniture" },
-  { src: "/banners/apparel.jpg", label: "Apparel" },
-  { src: "/banners/cosmetics.jpg", label: "Cosmetics" },
-  { src: "/banners/hometextiles.jpg", label: "Home Textiles" },
-  { src: "/banners/footwear.jpg", label: "Footwear" },
-  { src: "/banners/food.jpg", label: "Food & Beverage" },
-]
 
 function CookieBanner() {
   const [visible, setVisible] = useState(false)
@@ -368,7 +356,6 @@ export default function Home() {
               <span style={{ fontFamily: "Georgia,serif", fontSize: 13, letterSpacing: 2, color: G, textTransform: "uppercase", fontWeight: 400 }}>TIH</span>
             )}
           </div>
-          {/* ПРАВАЯ ЧАСТЬ ШАПКИ — WhatsApp кнопка */}
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             {!isMobile && (
               <a href={WA} target="_blank"
@@ -413,10 +400,9 @@ export default function Home() {
               transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
               onClick={() => window.location.href = '/founder'}
               style={{ cursor: "pointer", width: "100%", position: "relative" }}>
-              {/* FIX: objectFit contain чтобы показывать полное фото */}
-              <div style={{ width: "100%", aspectRatio: "3/4", overflow: "hidden", background: "#0a0a0a" }}>
+              <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden" }}>
                 <img src="/founder.jpg" alt="Oleksandr Peters — Founder Trade Istanbul Hub"
-                  style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", display: "block" }} />
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 10%", display: "block" }} />
               </div>
             </motion.div>
             <div style={{ textAlign: "center", padding: "12px 16px", background: "rgba(201,168,76,0.03)", borderBottom: "1px solid rgba(201,168,76,0.08)" }}>
@@ -429,7 +415,6 @@ export default function Home() {
               <p style={{ fontSize: 13, color: PEARL, lineHeight: 1.8, fontFamily: "Georgia,serif", marginBottom: 20, fontStyle: "italic", fontWeight: 400 }}>
                 "Every factory verified personally. Every shipment backed by my name. This is not a marketplace — this is a partnership built on trust."
               </p>
-              {/* Личные соцсети основателя */}
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
                 {Object.entries(FOUNDER_SOCIAL).map(([name, url]) => (
                   <a key={name} href={url} target="_blank" style={{ padding: "7px 12px", border: "1px solid rgba(201,168,76,0.25)", background: "none", color: PEARL, fontSize: 9, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, fontWeight: 500 }}>{name}</a>
@@ -443,8 +428,7 @@ export default function Home() {
                   </a>
                 ))}
               </div>
-              {/* FIX: цифры по центру клеточки */}
-              <div style={{ borderTop: "1px solid rgba(201,168,76,0.08)", paddingTop: 20, paddingBottom: 20, display: "flex", gap: 20, flexWrap: "wrap", justifyContent: "flex-start" }}>
+              <div style={{ borderTop: "1px solid rgba(201,168,76,0.08)", paddingTop: 20, paddingBottom: 20, display: "flex", gap: 20, flexWrap: "wrap" }}>
                 {[["15","Categories"],["5","Verticals"],["500+","Factories"],["40+","Countries"]].map(([n,l]) => (
                   <div key={l} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minWidth: 60 }}>
                     <div style={{ fontFamily: "Georgia,serif", fontSize: 24, color: G, fontWeight: 300, lineHeight: 1, textAlign: "center" }}>{n}</div>
@@ -472,16 +456,14 @@ export default function Home() {
                   onMouseLeave={handlePhotoLeave}
                   onClick={() => window.location.href = '/founder'}
                   whileHover={{ scale: 1.02 }}>
-                  {/* FIX: полное фото без обрезки — objectFit contain */}
+                  {/* FIX: cover + 10% сверху — полное фото без чёрных полей */}
                   <div style={{
-                    width: "100%", aspectRatio: "3/4", overflow: "hidden",
-                    background: "#080808",
+                    width: "100%", aspectRatio: "4/3", overflow: "hidden",
                     border: `1px solid rgba(201,168,76,${photoHov ? "0.5" : "0.15"})`,
-                    transition: "border-color .3s",
-                    display: "flex", alignItems: "center", justifyContent: "center"
+                    transition: "border-color .3s"
                   }}>
                     <img src="/founder.jpg" alt="Oleksandr Peters"
-                      style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", display: "block" }} />
+                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 10%", display: "block" }} />
                   </div>
                 </motion.div>
                 <div style={{ textAlign: "center", marginTop: 12, fontSize: 10, color: G, fontFamily: "Georgia,serif", fontStyle: "italic", letterSpacing: 3 }}>— Personal Guarantee —</div>
@@ -504,7 +486,6 @@ export default function Home() {
                   "Every factory verified personally. Every shipment backed by my name. This is not a marketplace — this is a partnership built on trust."
                 </p>
 
-                {/* Личные соцсети основателя */}
                 <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 16 }}>
                   {Object.entries(FOUNDER_SOCIAL).map(([name, url]) => (
                     <a key={name} href={url} target="_blank" style={{ padding: "8px 16px", border: "1px solid rgba(201,168,76,0.25)", background: "none", color: PEARL, fontSize: 9, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, transition: "all .2s", fontWeight: 500 }}
@@ -526,7 +507,6 @@ export default function Home() {
                   ))}
                 </div>
 
-                {/* FIX: цифры строго по центру своей ячейки */}
                 <div style={{ borderTop: "1px solid rgba(201,168,76,0.08)", paddingTop: 28, paddingBottom: 12, display: "flex", gap: 36, flexWrap: "wrap", alignItems: "center" }}>
                   {[["15","Product Categories"],["5","Service Verticals"],["500+","Manufacturers"],["40+","Countries"]].map(([n,l]) => (
                     <div key={l} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minWidth: 80 }}>
@@ -541,7 +521,7 @@ export default function Home() {
         )}
       </section>
 
-      {/* SERVICES — плотно после Hero */}
+      {/* SERVICES */}
       <section style={{ padding: isMobile ? "16px 16px 32px" : "16px 48px 48px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: isMobile ? 14 : 24 }}>
@@ -550,33 +530,6 @@ export default function Home() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3,1fr)", gap: isMobile ? 6 : 2 }}>
             {SVCS.map(s => <SvcCard key={s.slug} {...s} isMobile={isMobile} />)}
-          </div>
-        </div>
-      </section>
-
-      {/* SOURCING SHOWCASE */}
-      <section style={{ padding: isMobile ? "0 16px 32px" : "0 48px 48px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: isMobile ? 14 : 24 }}>
-            <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Sourcing Showcase</span>
-            <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.12)" }} />
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2,1fr)" : "repeat(3,1fr)", gap: isMobile ? 4 : 3 }}>
-            {SHOWCASE_PHOTOS.map((photo) => (
-              <motion.div key={photo.label}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: .2 }}
-                style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden", border: "1px solid rgba(201,168,76,0.12)", cursor: "pointer", background: "#0d0d0d" }}>
-                <img src={photo.src} alt={photo.label}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform .4s" }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1.05)" }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1)" }}
-                  onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none" }} />
-                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "8px 12px", background: "linear-gradient(transparent, rgba(0,0,0,0.8))" }}>
-                  <span style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>{photo.label}</span>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
@@ -595,23 +548,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BRAND — CryptoCharm перед категориями */}
+      {/* BRAND — CryptoCharm точно как CatRow */}
       <section style={{ padding: isMobile ? "0 16px 24px" : "0 48px 40px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 8 }}>
             <span style={{ fontSize: isMobile ? 8 : 10, letterSpacing: 4, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Brand</span>
             <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.08)" }} />
           </div>
-          <motion.a href="/cryptocharm"
-            whileHover={{ x: 10, backgroundColor: "rgba(201,168,76,0.04)" }}
-            transition={{ duration: .18 }}
-            style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "space-between", padding: isMobile ? "16px 0" : "20px 0", borderBottom: "1px solid rgba(201,168,76,0.06)", cursor: "pointer" }}>
-            <div>
-              <span style={{ fontFamily: "Georgia,serif", fontSize: isMobile ? 20 : 24, fontWeight: 500, color: PEARL, letterSpacing: .5 }}>CryptoCharm Official</span>
-              <span style={{ display: "block", fontSize: 9, letterSpacing: 2, color: G, fontFamily: MONO, textTransform: "uppercase", marginTop: 4 }}>Crypto Fashion Brand · Istanbul</span>
-            </div>
-            <span style={{ color: G, fontSize: 20 }}>→</span>
-          </motion.a>
+          <CatRow name="CryptoCharm Official" slug="cryptocharm" isMobile={isMobile} />
         </div>
       </section>
 
@@ -627,6 +571,27 @@ export default function Home() {
           </div>
         </section>
       ))}
+
+      {/* SOURCING SHOWCASE — минималистичный CTA блок */}
+      <section style={{ padding: isMobile ? "48px 16px 56px" : "80px 48px 96px", textAlign: "center" }}>
+        <div style={{ maxWidth: 700, margin: "0 auto" }}>
+          <div style={{ fontSize: 9, letterSpacing: 6, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, marginBottom: 24 }}>
+            Sourcing Showcase
+          </div>
+          <h2 style={{ fontFamily: "Georgia,serif", fontSize: isMobile ? 22 : 32, fontWeight: 300, color: PEARL, marginBottom: 16, lineHeight: 1.3, letterSpacing: 1 }}>
+            Verified. Inspected. Delivered.
+          </h2>
+          <p style={{ fontSize: isMobile ? 10 : 11, color: "rgba(229,227,238,0.45)", fontFamily: MONO, letterSpacing: 2, lineHeight: 1.9, marginBottom: 40, textTransform: "uppercase" }}>
+            A visual archive of our verified manufacturing processes,<br />textile mills, and quality control inspections.
+          </p>
+          <a href="/gallery"
+            style={{ display: "inline-block", padding: isMobile ? "12px 28px" : "14px 40px", border: `1px solid ${G}`, color: G, fontSize: 9, letterSpacing: 3, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, fontWeight: 600, transition: "all .25s" }}
+            onMouseEnter={e => { e.currentTarget.style.background = G; e.currentTarget.style.color = D; e.currentTarget.style.boxShadow = `0 0 24px rgba(201,168,76,0.3)` }}
+            onMouseLeave={e => { e.currentTarget.style.background = "none"; e.currentTarget.style.color = G; e.currentTarget.style.boxShadow = "none" }}>
+            Explore Production Gallery →
+          </a>
+        </div>
+      </section>
 
       {/* FOOTER */}
       <footer style={{ background: "#040404", borderTop: "1px solid rgba(201,168,76,0.06)", padding: isMobile ? "32px 16px 20px" : "52px 48px 24px" }}>
@@ -701,7 +666,6 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
               <div style={{ borderTop: "1px solid rgba(201,168,76,0.06)", paddingTop: 24, marginBottom: 20 }}>
                 <div style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", marginBottom: 12, fontFamily: MONO, fontWeight: 600 }}>Legal</div>
                 <div style={{ display: "flex", gap: 24 }}>
@@ -716,7 +680,6 @@ export default function Home() {
               </div>
             </div>
           )}
-
           <div style={{ borderTop: "1px solid rgba(201,168,76,0.04)", paddingTop: 16, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
             <div style={{ fontSize: isMobile ? 8 : 9, color: G, letterSpacing: 2, fontFamily: MONO, textTransform: "uppercase", fontWeight: 500 }}>© 2025 Trade Istanbul Hub LLC · Florida, USA</div>
             <div style={{ fontSize: isMobile ? 8 : 9, color: PEARL, fontFamily: MONO, fontWeight: 500 }}>Founder: <span style={{ color: G }}>Oleksandr Peters</span></div>
