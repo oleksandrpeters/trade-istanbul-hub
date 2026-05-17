@@ -68,20 +68,38 @@ const NAV_MENU = {
   ],
 }
 
+// Бизнес соцсети — для шапки, футера, Social Media меню
 const SOCIAL_LINKS: Record<string, string> = {
   LinkedIn: "https://linkedin.com/company/trade-istanbul-hub",
-  Facebook: "https://facebook.com/tradeistanbulhub",
-  Instagram: "https://instagram.com/tradeistanbulhub",
-  YouTube: "https://youtube.com/@tradeistanbulhub",
+  Facebook: "https://facebook.com/TradeIstanbulHub",
+  Instagram: "https://instagram.com/trade_istanbul_hub",
+  YouTube: "https://youtube.com/@TRADEISTANBULHUB",
 }
 
-const WA = "https://wa.me/905464151011?text=Hello%20Oleksandr%2C%20I%20am%20interested%20in%20wholesale%20cooperation%20with%20Trade%20Istanbul%20Group."
+// Личные соцсети основателя — для карточки на главной
+const FOUNDER_SOCIAL: Record<string, string> = {
+  LinkedIn: "https://linkedin.com/in/oleksandrpeters",
+  Facebook: "https://facebook.com/OleksandrPeters",
+  Instagram: "https://instagram.com/oleksandr_peters",
+  YouTube: "https://youtube.com/@TRADEISTANBULHUB",
+}
+
+const WA = "https://wa.me/905464151011?text=Hello%20Oleksandr%2C%20I%20am%20interested%20in%20wholesale%20cooperation%20with%20Trade%20Istanbul%20Hub."
 const G = "#C9A84C"
 const D = "#0A0A0A"
 const PEARL = "#E5E3EE"
 const MONO = "'Courier New', monospace"
 
-// Cookie Banner
+// Showcase photos — замени на реальные когда будут готовы
+const SHOWCASE_PHOTOS = [
+  { src: "/banners/furniture.jpg", label: "Furniture" },
+  { src: "/banners/apparel.jpg", label: "Apparel" },
+  { src: "/banners/cosmetics.jpg", label: "Cosmetics" },
+  { src: "/banners/hometextiles.jpg", label: "Home Textiles" },
+  { src: "/banners/footwear.jpg", label: "Footwear" },
+  { src: "/banners/food.jpg", label: "Food & Beverage" },
+]
+
 function CookieBanner() {
   const [visible, setVisible] = useState(false)
   useEffect(() => {
@@ -124,8 +142,8 @@ function NavItem({ label, items }: { label: string, items: { name: string, slug:
               </div>
             )}
             {items.map(item => (
-              <a key={item.slug} href={item.slug === "wa" ? WA : `/${item.slug}`}
-                target={item.slug === "wa" ? "_blank" : "_self"}
+              <a key={item.slug} href={item.slug === "wa" ? WA : SOCIAL_LINKS[item.name] ? SOCIAL_LINKS[item.name] : `/${item.slug}`}
+                target={item.slug === "wa" || SOCIAL_LINKS[item.name] ? "_blank" : "_self"}
                 style={{ display: "block", padding: "10px 20px", fontSize: 11, color: isSpecial ? "#FFFFFF" : PEARL, textDecoration: "none", fontFamily: MONO, letterSpacing: 1, textTransform: "uppercase", transition: "all .15s", fontWeight: 500 }}
                 onMouseEnter={e => { e.currentTarget.style.color = G; e.currentTarget.style.paddingLeft = "26px" }}
                 onMouseLeave={e => { e.currentTarget.style.color = isSpecial ? "#FFFFFF" : PEARL; e.currentTarget.style.paddingLeft = "20px" }}>
@@ -296,78 +314,42 @@ export default function Home() {
     <main style={{ background: D, color: "#F5F3EE", margin: 0, padding: 0, fontFamily: "Georgia,serif", overflowX: "hidden" }}>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{
-  __html: JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Oleksandr Peters",
-    "jobTitle": "Founder & CEO",
-    "image": "https://tradeistanbulhub.com/founder.jpg",
-    "url": "https://tradeistanbulhub.com/founder",
-    "knowsAbout": ["Turkish Export","B2B Wholesale","Furniture","Apparel","Footwear","Fabrics","Cosmetics","Perfumes","Home Textiles","Food & Beverage","Lighting","Building Materials","Home Appliances","Cleaning & Hygiene","Auto Parts","Tableware","Jewelry","Business Club","Business Tours","Medical Tourism","Tech Hub","Franchise Hub","CryptoCharm Official"],
-    "sameAs": ["https://linkedin.com/company/trade-istanbul-hub","https://instagram.com/tradeistanbulhub","https://facebook.com/tradeistanbulhub","https://youtube.com/@tradeistanbulhub"],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Trade Istanbul Hub LLC",
-      "url": "https://tradeistanbulhub.com",
-      "address": { "@type": "PostalAddress", "addressRegion": "Florida", "addressCountry": "US" },
-      "areaServed": ["UK","IT","ES","FR","DE","PL","US","CA","MX","PA","CO","BR","AR","PE","CL","SA","AE","EG","ZA","NG","GH","KE","IN","KR","VN"]
-    },
-    "description": "Personal Guarantor of Every Transaction. Premium Turkish B2B Export & Wholesale."
-  })
-}} />
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Oleksandr Peters",
+          "jobTitle": "Founder & CEO",
+          "image": "https://tradeistanbulhub.com/founder.jpg",
+          "url": "https://tradeistanbulhub.com/founder",
+          "knowsAbout": ["Turkish Export","B2B Wholesale","Furniture","Apparel","Footwear","Fabrics","Cosmetics","Perfumes","Home Textiles","Food & Beverage","Lighting","Building Materials","Home Appliances","Cleaning & Hygiene","Auto Parts","Tableware","Jewelry","Business Club","Business Tours","Medical Tourism","Tech Hub","Franchise Hub","CryptoCharm Official"],
+          "sameAs": ["https://linkedin.com/in/oleksandrpeters","https://instagram.com/oleksandr_peters","https://facebook.com/OleksandrPeters","https://youtube.com/@TRADEISTANBULHUB"],
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Trade Istanbul Hub LLC",
+            "url": "https://tradeistanbulhub.com",
+            "address": { "@type": "PostalAddress", "addressRegion": "Florida", "addressCountry": "US" },
+            "areaServed": ["UK","IT","ES","FR","DE","PL","US","CA","MX","PA","CO","BR","AR","PE","CL","SA","AE","EG","ZA","NG","GH","KE","IN","KR","VN"]
+          },
+          "description": "Personal Guarantor of Every Transaction. Premium Turkish B2B Export & Wholesale."
+        })
+      }} />
 
-<script type="application/ld+json" dangerouslySetInnerHTML={{
-  __html: JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How to buy Turkish products wholesale?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Contact Trade Istanbul Hub via WhatsApp. Oleksandr Peters personally verifies every factory and guarantees every shipment from Turkey."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What products does Trade Istanbul Hub export?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Trade Istanbul Hub exports 15 product categories: Furniture, Apparel, Footwear, Fabrics, Cosmetics, Perfumes, Home Textiles, Food & Beverage, Lighting, Building Materials, Home Appliances, Cleaning & Hygiene, Auto Parts, Tableware, and Jewelry."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Which countries does Trade Istanbul Hub ship to?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We ship to 40+ countries including USA, Brazil, Mexico, Germany, UK, UAE, Saudi Arabia, Nigeria, South Africa and more."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Who is Oleksandr Peters?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Oleksandr Peters is the Founder & CEO of Trade Istanbul Hub LLC, registered in Florida, USA. He personally verifies every Turkish manufacturer and provides a personal guarantee for every transaction."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the minimum order for Turkish wholesale?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Minimum orders vary by category. Contact us via WhatsApp for specific MOQ information for each product category."
-        }
-      }
-    ]
-  })
-}} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "How to buy Turkish products wholesale?", "acceptedAnswer": { "@type": "Answer", "text": "Contact Trade Istanbul Hub via WhatsApp. Oleksandr Peters personally verifies every factory and guarantees every shipment from Turkey." } },
+            { "@type": "Question", "name": "What products does Trade Istanbul Hub export?", "acceptedAnswer": { "@type": "Answer", "text": "Trade Istanbul Hub exports 15 product categories: Furniture, Apparel, Footwear, Fabrics, Cosmetics, Perfumes, Home Textiles, Food & Beverage, Lighting, Building Materials, Home Appliances, Cleaning & Hygiene, Auto Parts, Tableware, and Jewelry." } },
+            { "@type": "Question", "name": "Which countries does Trade Istanbul Hub ship to?", "acceptedAnswer": { "@type": "Answer", "text": "We ship to 40+ countries including USA, Brazil, Mexico, Germany, UK, UAE, Saudi Arabia, Nigeria, South Africa and more." } },
+            { "@type": "Question", "name": "Who is Oleksandr Peters?", "acceptedAnswer": { "@type": "Answer", "text": "Oleksandr Peters is the Founder & CEO of Trade Istanbul Hub LLC, registered in Florida, USA. He personally verifies every Turkish manufacturer and provides a personal guarantee for every transaction." } },
+            { "@type": "Question", "name": "What is the minimum order for Turkish wholesale?", "acceptedAnswer": { "@type": "Answer", "text": "Minimum orders vary by category. Contact us via WhatsApp for specific MOQ information for each product category." } }
+          ]
+        })
+      }} />
 
       <CookieBanner />
 
-      {/* БУРГЕР МЕНЮ */}
       <MobileBurgerMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
       {menuOpen && (
         <div onClick={() => setMenuOpen(false)}
@@ -383,10 +365,19 @@ export default function Home() {
               <span style={{ fontFamily: "Georgia,serif", fontSize: 17, letterSpacing: 7, color: G, textTransform: "uppercase", fontWeight: 400 }}>Trade Istanbul Hub</span>
             )}
             {isMobile && (
-              <span style={{ fontFamily: "Georgia,serif", fontSize: 13, letterSpacing: 2, color: G, textTransform: "uppercase", fontWeight: 400 }}>TIG</span>
+              <span style={{ fontFamily: "Georgia,serif", fontSize: 13, letterSpacing: 2, color: G, textTransform: "uppercase", fontWeight: 400 }}>TIH</span>
             )}
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          {/* ПРАВАЯ ЧАСТЬ ШАПКИ — WhatsApp кнопка */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            {!isMobile && (
+              <a href={WA} target="_blank"
+                style={{ display: "flex", alignItems: "center", gap: 8, padding: "7px 16px", border: `1px solid ${G}`, color: G, fontSize: 9, letterSpacing: 2, textDecoration: "none", fontFamily: MONO, textTransform: "uppercase", fontWeight: 600, transition: "all .2s" }}
+                onMouseEnter={e => { e.currentTarget.style.background = G; e.currentTarget.style.color = D }}
+                onMouseLeave={e => { e.currentTarget.style.background = "none"; e.currentTarget.style.color = G }}>
+                ✆ WhatsApp
+              </a>
+            )}
             {isMobile && (
               <button onClick={() => setMenuOpen(true)}
                 style={{ background: "none", border: `1px solid rgba(201,168,76,0.4)`, color: G, fontSize: 18, cursor: "pointer", padding: "4px 12px", fontFamily: MONO, lineHeight: 1 }}>
@@ -405,7 +396,7 @@ export default function Home() {
       </header>
 
       {/* HERO */}
-      <section style={{ minHeight: "100vh", padding: isMobile ? "72px 0 0" : "130px 48px 80px", position: "relative", overflow: "hidden", background: `radial-gradient(ellipse at 30% 50%, #1a1005 0%, ${D} 65%)` }}>
+      <section style={{ minHeight: "100vh", padding: isMobile ? "72px 0 0" : "130px 48px 48px", position: "relative", overflow: "hidden", background: `radial-gradient(ellipse at 30% 50%, #1a1005 0%, ${D} 65%)` }}>
         {!isMobile && (
           <motion.div style={{ position: "absolute", inset: -60, x: gridX, y: gridY, backgroundImage: "linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
         )}
@@ -422,9 +413,10 @@ export default function Home() {
               transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
               onClick={() => window.location.href = '/founder'}
               style={{ cursor: "pointer", width: "100%", position: "relative" }}>
-              <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden" }}>
+              {/* FIX: objectFit contain чтобы показывать полное фото */}
+              <div style={{ width: "100%", aspectRatio: "3/4", overflow: "hidden", background: "#0a0a0a" }}>
                 <img src="/founder.jpg" alt="Oleksandr Peters — Founder Trade Istanbul Hub"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }} />
+                  style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", display: "block" }} />
               </div>
             </motion.div>
             <div style={{ textAlign: "center", padding: "12px 16px", background: "rgba(201,168,76,0.03)", borderBottom: "1px solid rgba(201,168,76,0.08)" }}>
@@ -437,8 +429,9 @@ export default function Home() {
               <p style={{ fontSize: 13, color: PEARL, lineHeight: 1.8, fontFamily: "Georgia,serif", marginBottom: 20, fontStyle: "italic", fontWeight: 400 }}>
                 "Every factory verified personally. Every shipment backed by my name. This is not a marketplace — this is a partnership built on trust."
               </p>
+              {/* Личные соцсети основателя */}
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
-                {Object.entries(SOCIAL_LINKS).map(([name, url]) => (
+                {Object.entries(FOUNDER_SOCIAL).map(([name, url]) => (
                   <a key={name} href={url} target="_blank" style={{ padding: "7px 12px", border: "1px solid rgba(201,168,76,0.25)", background: "none", color: PEARL, fontSize: 9, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, fontWeight: 500 }}>{name}</a>
                 ))}
               </div>
@@ -450,11 +443,12 @@ export default function Home() {
                   </a>
                 ))}
               </div>
-              <div style={{ borderTop: "1px solid rgba(201,168,76,0.08)", paddingTop: 20, display: "flex", gap: 20, flexWrap: "wrap" }}>
+              {/* FIX: цифры по центру клеточки */}
+              <div style={{ borderTop: "1px solid rgba(201,168,76,0.08)", paddingTop: 20, paddingBottom: 20, display: "flex", gap: 20, flexWrap: "wrap", justifyContent: "flex-start" }}>
                 {[["15","Categories"],["5","Verticals"],["500+","Factories"],["40+","Countries"]].map(([n,l]) => (
-                  <div key={l} style={{ textAlign: "center" }}>
-                    <div style={{ fontFamily: "Georgia,serif", fontSize: 24, color: G, fontWeight: 300, lineHeight: 1 }}>{n}</div>
-                    <div style={{ fontSize: 7, letterSpacing: 2, color: PEARL, textTransform: "uppercase", marginTop: 4, fontFamily: MONO, fontWeight: 500 }}>{l}</div>
+                  <div key={l} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minWidth: 60 }}>
+                    <div style={{ fontFamily: "Georgia,serif", fontSize: 24, color: G, fontWeight: 300, lineHeight: 1, textAlign: "center" }}>{n}</div>
+                    <div style={{ fontSize: 7, letterSpacing: 2, color: PEARL, textTransform: "uppercase", marginTop: 4, fontFamily: MONO, fontWeight: 500, textAlign: "center" }}>{l}</div>
                   </div>
                 ))}
               </div>
@@ -478,13 +472,16 @@ export default function Home() {
                   onMouseLeave={handlePhotoLeave}
                   onClick={() => window.location.href = '/founder'}
                   whileHover={{ scale: 1.02 }}>
+                  {/* FIX: полное фото без обрезки — objectFit contain */}
                   <div style={{
-                    width: "100%", aspectRatio: "4/3", overflow: "hidden",
+                    width: "100%", aspectRatio: "3/4", overflow: "hidden",
+                    background: "#080808",
                     border: `1px solid rgba(201,168,76,${photoHov ? "0.5" : "0.15"})`,
-                    transition: "border-color .3s"
+                    transition: "border-color .3s",
+                    display: "flex", alignItems: "center", justifyContent: "center"
                   }}>
                     <img src="/founder.jpg" alt="Oleksandr Peters"
-                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }} />
+                      style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", display: "block" }} />
                   </div>
                 </motion.div>
                 <div style={{ textAlign: "center", marginTop: 12, fontSize: 10, color: G, fontFamily: "Georgia,serif", fontStyle: "italic", letterSpacing: 3 }}>— Personal Guarantee —</div>
@@ -493,7 +490,6 @@ export default function Home() {
               <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .9 }}>
                 <p style={{ fontSize: 11, letterSpacing: 4, color: G, textTransform: "uppercase", marginBottom: 28, fontFamily: MONO, fontWeight: 600 }}>Premium Turkish Export · Managed B2B Sourcing</p>
 
-                {/* АНИМАЦИЯ НА ИМЯ */}
                 <motion.h2
                   onMouseEnter={() => setFounderHov(true)}
                   onMouseLeave={() => setFounderHov(false)}
@@ -508,8 +504,9 @@ export default function Home() {
                   "Every factory verified personally. Every shipment backed by my name. This is not a marketplace — this is a partnership built on trust."
                 </p>
 
+                {/* Личные соцсети основателя */}
                 <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 16 }}>
-                  {Object.entries(SOCIAL_LINKS).map(([name, url]) => (
+                  {Object.entries(FOUNDER_SOCIAL).map(([name, url]) => (
                     <a key={name} href={url} target="_blank" style={{ padding: "8px 16px", border: "1px solid rgba(201,168,76,0.25)", background: "none", color: PEARL, fontSize: 9, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, transition: "all .2s", fontWeight: 500 }}
                       onMouseEnter={e => { e.currentTarget.style.borderColor = G; e.currentTarget.style.color = G; e.currentTarget.style.boxShadow = `0 0 12px rgba(201,168,76,0.3)` }}
                       onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.25)"; e.currentTarget.style.color = PEARL; e.currentTarget.style.boxShadow = "none" }}>
@@ -529,11 +526,12 @@ export default function Home() {
                   ))}
                 </div>
 
-                <div style={{ borderTop: "1px solid rgba(201,168,76,0.08)", paddingTop: 28, display: "flex", gap: 36, flexWrap: "wrap" }}>
+                {/* FIX: цифры строго по центру своей ячейки */}
+                <div style={{ borderTop: "1px solid rgba(201,168,76,0.08)", paddingTop: 28, paddingBottom: 12, display: "flex", gap: 36, flexWrap: "wrap", alignItems: "center" }}>
                   {[["15","Product Categories"],["5","Service Verticals"],["500+","Manufacturers"],["40+","Countries"]].map(([n,l]) => (
-                    <div key={l}>
-                      <div style={{ fontFamily: "Georgia,serif", fontSize: 36, color: G, fontWeight: 300, lineHeight: 1 }}>{n}</div>
-                      <div style={{ fontSize: 9, letterSpacing: 3, color: PEARL, textTransform: "uppercase", marginTop: 6, fontFamily: MONO, fontWeight: 500 }}>{l}</div>
+                    <div key={l} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minWidth: 80 }}>
+                      <div style={{ fontFamily: "Georgia,serif", fontSize: 36, color: G, fontWeight: 300, lineHeight: 1, textAlign: "center" }}>{n}</div>
+                      <div style={{ fontSize: 9, letterSpacing: 3, color: PEARL, textTransform: "uppercase", marginTop: 6, fontFamily: MONO, fontWeight: 500, textAlign: "center" }}>{l}</div>
                     </div>
                   ))}
                 </div>
@@ -543,10 +541,10 @@ export default function Home() {
         )}
       </section>
 
-      {/* SERVICES */}
-      <section style={{ padding: isMobile ? "0 16px 32px" : "0 48px 64px" }}>
+      {/* SERVICES — плотно после Hero */}
+      <section style={{ padding: isMobile ? "16px 16px 32px" : "16px 48px 48px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: isMobile ? 14 : 28 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: isMobile ? 14 : 24 }}>
             <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Services</span>
             <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.12)" }} />
           </div>
@@ -556,10 +554,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STRATEGIC VENTURES */}
-      <section style={{ padding: isMobile ? "0 16px 32px" : "0 48px 64px" }}>
+      {/* SOURCING SHOWCASE */}
+      <section style={{ padding: isMobile ? "0 16px 32px" : "0 48px 48px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: isMobile ? 14 : 28 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: isMobile ? 14 : 24 }}>
+            <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Sourcing Showcase</span>
+            <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.12)" }} />
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2,1fr)" : "repeat(3,1fr)", gap: isMobile ? 4 : 3 }}>
+            {SHOWCASE_PHOTOS.map((photo) => (
+              <motion.div key={photo.label}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: .2 }}
+                style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden", border: "1px solid rgba(201,168,76,0.12)", cursor: "pointer", background: "#0d0d0d" }}>
+                <img src={photo.src} alt={photo.label}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform .4s" }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1.05)" }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1)" }}
+                  onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none" }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "8px 12px", background: "linear-gradient(transparent, rgba(0,0,0,0.8))" }}>
+                  <span style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>{photo.label}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* STRATEGIC VENTURES */}
+      <section style={{ padding: isMobile ? "0 16px 32px" : "0 48px 48px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: isMobile ? 14 : 24 }}>
             <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Strategic Ventures</span>
             <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.12)" }} />
           </div>
@@ -567,6 +592,26 @@ export default function Home() {
             <StrategicCard name="Tech Hub" slug="techhub" desc="Turkey Digital Export · $120B · SaaS, Fintech, Game Dev" isMobile={isMobile} />
             <StrategicCard name="Franchise Hub" slug="franchisehub" desc="Scale Your Brand · F&B, Retail, Service Franchises" isMobile={isMobile} />
           </div>
+        </div>
+      </section>
+
+      {/* BRAND — CryptoCharm перед категориями */}
+      <section style={{ padding: isMobile ? "0 16px 24px" : "0 48px 40px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 8 }}>
+            <span style={{ fontSize: isMobile ? 8 : 10, letterSpacing: 4, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Brand</span>
+            <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.08)" }} />
+          </div>
+          <motion.a href="/cryptocharm"
+            whileHover={{ x: 10, backgroundColor: "rgba(201,168,76,0.04)" }}
+            transition={{ duration: .18 }}
+            style={{ textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "space-between", padding: isMobile ? "16px 0" : "20px 0", borderBottom: "1px solid rgba(201,168,76,0.06)", cursor: "pointer" }}>
+            <div>
+              <span style={{ fontFamily: "Georgia,serif", fontSize: isMobile ? 20 : 24, fontWeight: 500, color: PEARL, letterSpacing: .5 }}>CryptoCharm Official</span>
+              <span style={{ display: "block", fontSize: 9, letterSpacing: 2, color: G, fontFamily: MONO, textTransform: "uppercase", marginTop: 4 }}>Crypto Fashion Brand · Istanbul</span>
+            </div>
+            <span style={{ color: G, fontSize: 20 }}>→</span>
+          </motion.a>
         </div>
       </section>
 
@@ -602,7 +647,6 @@ export default function Home() {
                   {CATS.slice(8).map(c => <a key={c.slug} href={`/${c.slug}`} style={{ display: "block", fontSize: 9, color: PEARL, marginBottom: 6, fontFamily: MONO, fontWeight: 500, textTransform: "uppercase", textDecoration: "none" }}>{c.name}</a>)}
                 </div>
               </div>
-              {/* LEGAL MOBILE */}
               <div style={{ borderTop: "1px solid rgba(201,168,76,0.06)", paddingTop: 16 }}>
                 <div style={{ fontSize: 8, letterSpacing: 3, color: G, textTransform: "uppercase", marginBottom: 10, fontFamily: MONO, fontWeight: 600 }}>Legal</div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
@@ -618,7 +662,10 @@ export default function Home() {
                 <div>
                   <div style={{ fontFamily: "Georgia,serif", fontSize: 18, color: G, marginBottom: 12, letterSpacing: 2 }}>Trade Istanbul Hub</div>
                   <div style={{ fontSize: 11, letterSpacing: 1, color: PEARL, lineHeight: 1.8, fontFamily: MONO, marginBottom: 8, maxWidth: 240, fontWeight: 500, textTransform: "uppercase" }}>Premium B2B export & wholesale. 15 categories. 500+ manufacturers.</div>
-                  <div style={{ fontSize: 10, color: G, fontFamily: MONO, letterSpacing: 2, marginBottom: 20, textTransform: "uppercase", fontWeight: 500 }}>Trade Istanbul Hub LLC · Florida, USA</div>
+                  <div style={{ fontSize: 10, color: G, fontFamily: MONO, letterSpacing: 2, marginBottom: 8, textTransform: "uppercase", fontWeight: 500 }}>Trade Istanbul Hub LLC · Florida, USA</div>
+                  <div style={{ fontSize: 9, color: PEARL, fontFamily: MONO, letterSpacing: 1, marginBottom: 20, textTransform: "uppercase" }}>
+                    <a href="mailto:oleksandr@tradeistanbulhub.com" style={{ color: G, textDecoration: "none" }}>oleksandr@tradeistanbulhub.com</a>
+                  </div>
                   <a href={WA} target="_blank" style={{ display: "inline-block", padding: "10px 24px", border: `1px solid ${G}`, color: G, fontSize: 9, letterSpacing: 2, textDecoration: "none", fontFamily: MONO, textTransform: "uppercase", transition: "all .25s" }}
                     onMouseEnter={e => { e.currentTarget.style.background = G; e.currentTarget.style.color = D }}
                     onMouseLeave={e => { e.currentTarget.style.background = "none"; e.currentTarget.style.color = G }}>
@@ -642,10 +689,19 @@ export default function Home() {
                       {n}
                     </a>
                   ))}
+                  <div style={{ marginTop: 16 }}>
+                    <div style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", marginBottom: 12, fontFamily: MONO, fontWeight: 600 }}>Social</div>
+                    {Object.entries(SOCIAL_LINKS).map(([name, url]) => (
+                      <a key={name} href={url} target="_blank" style={{ display: "block", fontSize: 10, letterSpacing: 1, color: PEARL, marginBottom: 8, fontFamily: MONO, fontWeight: 500, textTransform: "uppercase", textDecoration: "none" }}
+                        onMouseEnter={e => e.currentTarget.style.color = G}
+                        onMouseLeave={e => e.currentTarget.style.color = PEARL}>
+                        {name}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              {/* LEGAL DESKTOP */}
               <div style={{ borderTop: "1px solid rgba(201,168,76,0.06)", paddingTop: 24, marginBottom: 20 }}>
                 <div style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", marginBottom: 12, fontFamily: MONO, fontWeight: 600 }}>Legal</div>
                 <div style={{ display: "flex", gap: 24 }}>
