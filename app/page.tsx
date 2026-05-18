@@ -458,7 +458,7 @@ export default function Home() {
                   whileHover={{ scale: 1.02 }}>
                   {/* FIX: cover + 10% сверху — полное фото без чёрных полей */}
                   <div style={{
-                    width: "100%", aspectRatio: "4/3", overflow: "hidden",
+                    width: "100%", aspectRatio: "3/4", overflow: "hidden",
                     border: `1px solid rgba(201,168,76,${photoHov ? "0.5" : "0.15"})`,
                     transition: "border-color .3s"
                   }}>
