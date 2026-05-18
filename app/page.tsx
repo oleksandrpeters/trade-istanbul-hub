@@ -156,6 +156,7 @@ function MobileBurgerMenu({ open, onClose }: { open: boolean, onClose: () => voi
     { label: "Founder", items: [{ name: "Oleksandr Peters", slug: "founder" }] },
     { label: "Contact", items: [{ name: "WhatsApp", slug: "wa" }, { name: "Email", slug: "email" }, { name: "Request Form", slug: "contact" }] },
     { label: "Social Media", items: [{ name: "LinkedIn", slug: "linkedin" }, { name: "Facebook", slug: "facebook" }, { name: "Instagram", slug: "instagram" }, { name: "YouTube", slug: "youtube" }] },
+    { label: "Sourcing Showcase", items: [{ name: "Production Gallery", slug: "gallery" }] },
   ]
   return (
     <AnimatePresence>
@@ -347,13 +348,15 @@ export default function Home() {
       {/* HEADER */}
       <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: "rgba(10,10,10,0.97)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(201,168,76,0.1)" }}>
         <div style={{ height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", padding: isMobile ? "0 16px" : "0 48px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+            {/* DESKTOP: увеличен gap между лого и текстом */}
             <img src="/logo.png" alt="TIG" style={{ height: isMobile ? 28 : 32, width: "auto" }} onError={e => { e.currentTarget.style.display = "none" }} />
             {!isMobile && (
               <span style={{ fontFamily: "Georgia,serif", fontSize: 17, letterSpacing: 7, color: G, textTransform: "uppercase", fontWeight: 400 }}>Trade Istanbul Hub</span>
             )}
+            {/* MOBILE: полное название вместо TIH */}
             {isMobile && (
-              <span style={{ fontFamily: "Georgia,serif", fontSize: 13, letterSpacing: 2, color: G, textTransform: "uppercase", fontWeight: 400 }}>TIH</span>
+              <span style={{ fontFamily: "Georgia,serif", fontSize: 11, letterSpacing: 2, color: G, textTransform: "uppercase", fontWeight: 400 }}>Trade Istanbul Hub</span>
             )}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -383,15 +386,16 @@ export default function Home() {
       </header>
 
       {/* HERO */}
-      <section style={{ minHeight: "100vh", padding: isMobile ? "72px 0 0" : "130px 48px 48px", position: "relative", overflow: "hidden", background: `radial-gradient(ellipse at 30% 50%, #1a1005 0%, ${D} 65%)` }}>
+      <section style={{ minHeight: "100vh", padding: isMobile ? "72px 0 0" : "130px 48px 0", position: "relative", overflow: "hidden", background: `radial-gradient(ellipse at 30% 50%, #1a1005 0%, ${D} 65%)` }}>
         {!isMobile && (
           <motion.div style={{ position: "absolute", inset: -60, x: gridX, y: gridY, backgroundImage: "linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
         )}
 
         {isMobile ? (
           <div>
+            {/* MOBILE: надпись под шапкой увеличена на 10% */}
             <div style={{ textAlign: "center", padding: "20px 16px 16px", borderBottom: "1px solid rgba(201,168,76,0.08)" }}>
-              <div style={{ fontSize: 8, letterSpacing: 3, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, lineHeight: 2 }}>
+              <div style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, lineHeight: 2 }}>
                 Trade Istanbul Hub LLC<br />B2B Wholesale · Istanbul · Florida, USA
               </div>
             </div>
@@ -408,27 +412,17 @@ export default function Home() {
             <div style={{ textAlign: "center", padding: "12px 16px", background: "rgba(201,168,76,0.03)", borderBottom: "1px solid rgba(201,168,76,0.08)" }}>
               <div style={{ fontSize: 10, color: G, fontFamily: "Georgia,serif", fontStyle: "italic", letterSpacing: 3 }}>— Personal Guarantee —</div>
             </div>
-            <div style={{ padding: "24px 16px" }}>
+
+            {/* MOBILE: золотая рамочка вокруг текста + цифр */}
+            <div style={{ margin: "16px", border: "1px solid rgba(201,168,76,0.3)", padding: "20px 16px" }}>
               <p style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", marginBottom: 12, fontFamily: MONO, fontWeight: 600 }}>Premium Turkish Export · Managed B2B Sourcing</p>
               <h2 style={{ fontFamily: "Georgia,serif", fontSize: 28, fontWeight: 300, color: "#F5F3EE", marginBottom: 4, lineHeight: 1.1 }}>Oleksandr Peters</h2>
               <div style={{ fontSize: 9, letterSpacing: 2, color: PEARL, textTransform: "uppercase", fontFamily: MONO, marginBottom: 16, fontWeight: 500 }}>Founder & CEO · Trade Istanbul Hub LLC</div>
               <p style={{ fontSize: 13, color: PEARL, lineHeight: 1.8, fontFamily: "Georgia,serif", marginBottom: 20, fontStyle: "italic", fontWeight: 400 }}>
                 "Every factory verified personally. Every shipment backed by my name. This is not a marketplace — this is a partnership built on trust."
               </p>
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
-                {Object.entries(FOUNDER_SOCIAL).map(([name, url]) => (
-                  <a key={name} href={url} target="_blank" style={{ padding: "7px 12px", border: "1px solid rgba(201,168,76,0.25)", background: "none", color: PEARL, fontSize: 9, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, fontWeight: 500 }}>{name}</a>
-                ))}
-              </div>
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 24 }}>
-                {[["WhatsApp", WA, true], ["Founder Story", "/founder", false], ["Blog", "/blog", false]].map(([label, href, isWa]) => (
-                  <a key={String(label)} href={String(href)} target={isWa ? "_blank" : "_self"}
-                    style={{ padding: "8px 14px", border: `1px solid ${G}`, color: G, fontSize: 9, letterSpacing: 2, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, fontWeight: 600 }}>
-                    {String(label)}
-                  </a>
-                ))}
-              </div>
-              <div style={{ borderTop: "1px solid rgba(201,168,76,0.08)", paddingTop: 20, paddingBottom: 20, display: "flex", gap: 20, flexWrap: "wrap" }}>
+              {/* MOBILE: цифры внутри рамочки */}
+              <div style={{ borderTop: "1px solid rgba(201,168,76,0.15)", paddingTop: 16, display: "flex", gap: 16, flexWrap: "wrap", justifyContent: "space-between" }}>
                 {[["15","Categories"],["5","Verticals"],["500+","Factories"],["40+","Countries"]].map(([n,l]) => (
                   <div key={l} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minWidth: 60 }}>
                     <div style={{ fontFamily: "Georgia,serif", fontSize: 24, color: G, fontWeight: 300, lineHeight: 1, textAlign: "center" }}>{n}</div>
@@ -437,16 +431,35 @@ export default function Home() {
                 ))}
               </div>
             </div>
+
+            {/* MOBILE: кнопки соцсетей под рамочкой */}
+            <div style={{ padding: "0 16px" }}>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 16 }}>
+                {Object.entries(FOUNDER_SOCIAL).map(([name, url]) => (
+                  <a key={name} href={url} target="_blank" style={{ padding: "7px 12px", border: "1px solid rgba(201,168,76,0.25)", background: "none", color: PEARL, fontSize: 9, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, fontWeight: 500 }}>{name}</a>
+                ))}
+              </div>
+              {/* MOBILE: кнопки WhatsApp/Founder/Blog с большим gap */}
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 32 }}>
+                {[["WhatsApp", WA, true], ["Founder Story", "/founder", false], ["Blog", "/blog", false]].map(([label, href, isWa]) => (
+                  <a key={String(label)} href={String(href)} target={isWa ? "_blank" : "_self"}
+                    style={{ padding: "10px 14px", border: `1px solid ${G}`, color: G, fontSize: 9, letterSpacing: 2, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, fontWeight: 600 }}>
+                    {String(label)}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         ) : (
+          /* DESKTOP */
           <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
-            <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <div style={{ textAlign: "center", marginBottom: 32 }}>
               <div style={{ fontSize: 10, letterSpacing: 6, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>
                 Trade Istanbul Hub LLC · B2B Wholesale · Istanbul, Turkey · Florida, USA
               </div>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "420px 1fr", gap: 72, alignItems: "flex-start" }}>
-              <div style={{ paddingTop: 20 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "380px 1fr", gap: 64, alignItems: "flex-start" }}>
+              <div style={{ paddingTop: 0 }}>
                 <motion.div
                   style={{ rotateX, rotateY, transformStyle: "preserve-3d", perspective: 1000, cursor: "pointer" }}
                   animate={{ y: [0, -12, 0] }}
@@ -456,14 +469,16 @@ export default function Home() {
                   onMouseLeave={handlePhotoLeave}
                   onClick={() => window.location.href = '/founder'}
                   whileHover={{ scale: 1.02 }}>
-                  {/* FIX: cover + 10% сверху — полное фото без чёрных полей */}
+                  {/* DESKTOP: objectFit contain — полное фото без обрезки */}
                   <div style={{
-                    width: "100%", aspectRatio: "3/4", overflow: "hidden",
+                    width: "100%", aspectRatio: "4/3", overflow: "hidden",
                     border: `1px solid rgba(201,168,76,${photoHov ? "0.5" : "0.15"})`,
-                    transition: "border-color .3s"
+                    transition: "border-color .3s",
+                    background: "#080808",
+                    display: "flex", alignItems: "center", justifyContent: "center"
                   }}>
                     <img src="/founder.jpg" alt="Oleksandr Peters"
-                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 10%", display: "block" }} />
+                      style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", display: "block" }} />
                   </div>
                 </motion.div>
                 <div style={{ textAlign: "center", marginTop: 12, fontSize: 10, color: G, fontFamily: "Georgia,serif", fontStyle: "italic", letterSpacing: 3 }}>— Personal Guarantee —</div>
@@ -496,7 +511,7 @@ export default function Home() {
                   ))}
                 </div>
 
-                <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 36 }}>
+                <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 24 }}>
                   {[["WhatsApp", WA, true], ["Founder Story", "/founder", false], ["Blog", "/blog", false]].map(([label, href, isWa]) => (
                     <a key={String(label)} href={String(href)} target={isWa ? "_blank" : "_self"}
                       style={{ padding: "9px 20px", border: `1px solid ${G}`, color: G, fontSize: 9, letterSpacing: 2, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, transition: "all .25s", fontWeight: 600 }}
@@ -507,7 +522,8 @@ export default function Home() {
                   ))}
                 </div>
 
-                <div style={{ borderTop: "1px solid rgba(201,168,76,0.08)", paddingTop: 16, paddingBottom: 16, display: "flex", gap: 36, flexWrap: "wrap", alignItems: "center" }}>
+                {/* DESKTOP: цифры по центру клеточки */}
+                <div style={{ borderTop: "1px solid rgba(201,168,76,0.08)", paddingTop: 20, paddingBottom: 20, display: "flex", gap: 36, flexWrap: "wrap", alignItems: "center" }}>
                   {[["15","Product Categories"],["5","Service Verticals"],["500+","Manufacturers"],["40+","Countries"]].map(([n,l]) => (
                     <div key={l} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minWidth: 80 }}>
                       <div style={{ fontFamily: "Georgia,serif", fontSize: 36, color: G, fontWeight: 300, lineHeight: 1, textAlign: "center" }}>{n}</div>
@@ -521,7 +537,7 @@ export default function Home() {
         )}
       </section>
 
-      {/* SERVICES */}
+      {/* SERVICES — сразу под hero */}
       <section style={{ padding: isMobile ? "16px 16px 32px" : "4px 48px 48px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: isMobile ? 14 : 24 }}>
@@ -548,7 +564,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BRAND — CryptoCharm точно как CatRow */}
+      {/* BRAND — CryptoCharm */}
       <section style={{ padding: isMobile ? "0 16px 24px" : "0 48px 40px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 8 }}>
@@ -572,20 +588,20 @@ export default function Home() {
         </section>
       ))}
 
-      {/* SOURCING SHOWCASE — минималистичный CTA блок */}
-      <section style={{ padding: isMobile ? "48px 16px 56px" : "48px 48px 56px", textAlign: "center" }}>
-        <div style={{ maxWidth: 700, margin: "0 auto" }}>
-          <div style={{ fontSize: 9, letterSpacing: 6, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, marginBottom: 24 }}>
+      {/* SOURCING SHOWCASE — уменьшен на 20% */}
+      <section style={{ padding: isMobile ? "32px 16px 40px" : "40px 48px 48px", textAlign: "center" }}>
+        <div style={{ maxWidth: 600, margin: "0 auto" }}>
+          <div style={{ fontSize: 9, letterSpacing: 6, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, marginBottom: 16 }}>
             Sourcing Showcase
           </div>
-          <h2 style={{ fontFamily: "Georgia,serif", fontSize: isMobile ? 22 : 32, fontWeight: 300, color: PEARL, marginBottom: 16, lineHeight: 1.3, letterSpacing: 1 }}>
+          <h2 style={{ fontFamily: "Georgia,serif", fontSize: isMobile ? 18 : 26, fontWeight: 300, color: PEARL, marginBottom: 12, lineHeight: 1.3, letterSpacing: 1 }}>
             Verified. Inspected. Delivered.
           </h2>
-          <p style={{ fontSize: isMobile ? 10 : 11, color: "rgba(229,227,238,0.45)", fontFamily: MONO, letterSpacing: 2, lineHeight: 1.9, marginBottom: 40, textTransform: "uppercase" }}>
+          <p style={{ fontSize: isMobile ? 9 : 10, color: "rgba(229,227,238,0.45)", fontFamily: MONO, letterSpacing: 2, lineHeight: 1.9, marginBottom: 28, textTransform: "uppercase" }}>
             A visual archive of our verified manufacturing processes,<br />factories, workshops, and quality control inspections.
           </p>
           <a href="/gallery"
-            style={{ display: "inline-block", padding: isMobile ? "12px 28px" : "14px 40px", border: `1px solid ${G}`, color: G, fontSize: 9, letterSpacing: 3, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, fontWeight: 600, transition: "all .25s" }}
+            style={{ display: "inline-block", padding: isMobile ? "10px 24px" : "12px 32px", border: `1px solid ${G}`, color: G, fontSize: 9, letterSpacing: 3, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, fontWeight: 600, transition: "all .25s" }}
             onMouseEnter={e => { e.currentTarget.style.background = G; e.currentTarget.style.color = D; e.currentTarget.style.boxShadow = `0 0 24px rgba(201,168,76,0.3)` }}
             onMouseLeave={e => { e.currentTarget.style.background = "none"; e.currentTarget.style.color = G; e.currentTarget.style.boxShadow = "none" }}>
             Explore Production Gallery →
