@@ -28,9 +28,9 @@ const GROUPS = [
 ]
 
 const SVCS = [
-  { name: "Business Club", slug: "club", desc: "Private B2B Network · Exclusive Deals" },
-  { name: "Business Tours", slug: "tours", desc: "Factory Tours · Istanbul & Bursa" },
-  { name: "Medical Tourism", slug: "medical", desc: "Premium Healthcare · Top Turkish Clinics" },
+  { name: "Business Club", slug: "club", desc: "Private B2B Network · Exclusive Deals", banner: "/banner-club.jpg" },
+  { name: "Business Tours", slug: "tours", desc: "Factory Tours · Istanbul & Bursa", banner: "/banner-tours.jpg" },
+  { name: "Medical Tourism", slug: "medical", desc: "Premium Healthcare · Top Turkish Clinics", banner: "/banner-medical.jpg" },
 ]
 
 const TECH_HUB = [
@@ -82,11 +82,51 @@ const FOUNDER_SOCIAL: Record<string, string> = {
   YouTube: "https://youtube.com/@TRADEISTANBULHUB",
 }
 
+const CAT_BANNERS: Record<string, string> = {
+  furniture: "/banner-furniture.jpg",
+  apparel: "/banner-apparel.jpg",
+  footwear: "/banner-footwear.jpg",
+  fabrics: "/banner-fabrics.jpg",
+  cosmetics: "/banner-cosmetics.jpg",
+  perfumes: "/banner-perfumes.jpg",
+  hometextiles: "/banner-hometextiles.jpg",
+  food: "/banner-food.jpg",
+  lighting: "/banner-lighting.jpg",
+  building: "/banner-building.jpg",
+  appliances: "/banner-appliances.jpg",
+  cleaning: "/banner-cleaning.jpg",
+  autoparts: "/banner-autoparts.jpg",
+  tableware: "/banner-tableware.jpg",
+  jewelry: "/banner-jewelry.jpg",
+}
+
 const WA = "https://wa.me/905464151011?text=Hello%20Oleksandr%2C%20I%20am%20interested%20in%20wholesale%20cooperation%20with%20Trade%20Istanbul%20Hub."
 const G = "#C9A84C"
 const D = "#0A0A0A"
 const PEARL = "#E5E3EE"
 const MONO = "'Courier New', monospace"
+
+// Горизонтальный скролл с вертикальными баннерами
+function MobileBannerScroll({ items }: { items: { name: string, slug: string, banner: string, label?: string }[] }) {
+  return (
+    <div style={{ display: "flex", overflowX: "auto", gap: 8, paddingLeft: 16, paddingRight: 16, scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
+      {items.map(item => (
+        <a key={item.slug} href={`/${item.slug}`} style={{
+          textDecoration: "none", flexShrink: 0, width: "75vw", scrollSnapAlign: "start",
+          position: "relative", overflow: "hidden", border: "1px solid rgba(201,168,76,0.2)"
+        }}>
+          <div style={{ width: "100%", aspectRatio: "2/3", overflow: "hidden" }}>
+            <img src={item.banner} alt={item.name}
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+          </div>
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "16px 12px", background: "linear-gradient(transparent, rgba(0,0,0,0.85))" }}>
+            <div style={{ fontSize: 11, letterSpacing: 2, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>{item.label || item.name}</div>
+          </div>
+        </a>
+      ))}
+    </div>
+  )
+}
 
 function CookieBanner() {
   const [visible, setVisible] = useState(false)
@@ -153,16 +193,15 @@ function MobileBurgerMenu({ open, onClose }: { open: boolean, onClose: () => voi
     { label: "Tech Hub ★", items: TECH_HUB },
     { label: "Franchise Hub ★", items: FRANCHISE_HUB },
     { label: "Brand", items: [{ name: "CryptoCharm Official", slug: "cryptocharm" }] },
+    { label: "Sourcing Showcase", items: [{ name: "Production Gallery", slug: "gallery" }] },
     { label: "Founder", items: [{ name: "Oleksandr Peters", slug: "founder" }] },
     { label: "Contact", items: [{ name: "WhatsApp", slug: "wa" }, { name: "Email", slug: "email" }, { name: "Request Form", slug: "contact" }] },
     { label: "Social Media", items: [{ name: "LinkedIn", slug: "linkedin" }, { name: "Facebook", slug: "facebook" }, { name: "Instagram", slug: "instagram" }, { name: "YouTube", slug: "youtube" }] },
-    { label: "Sourcing Showcase", items: [{ name: "Production Gallery", slug: "gallery" }] },
   ]
   return (
     <AnimatePresence>
       {open && (
-        <motion.div
-          initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
+        <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
           transition={{ type: "tween", duration: 0.3 }}
           style={{ position: "fixed", top: 0, right: 0, width: "85%", height: "100vh", background: "#060606", zIndex: 200, overflowY: "auto", borderLeft: "1px solid rgba(201,168,76,0.2)" }}>
           <div style={{ padding: "20px 20px 12px", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid rgba(201,168,76,0.1)" }}>
@@ -221,26 +260,24 @@ function SvcCard({ name, slug, desc, isMobile }: { name: string, slug: string, d
   return (
     <motion.a href={`/${slug}`}
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      whileHover={{ scale: 1.02, y: -3 }}
-      transition={{ duration: .2 }}
-      style={{ textDecoration: "none", background: hov ? G : "#0d0d0d", padding: isMobile ? "18px 16px" : "36px 28px", display: "flex", flexDirection: "column", border: `1px solid ${hov ? G : "rgba(201,168,76,0.3)"}`, cursor: "pointer", boxShadow: hov ? `0 0 24px rgba(201,168,76,0.4)` : "none", transition: "background .25s, box-shadow .25s" }}>
-      <span style={{ fontSize: isMobile ? 10 : 11, letterSpacing: 3, textTransform: "uppercase", fontFamily: MONO, color: hov ? D : G, marginBottom: 8, fontWeight: 600, transition: "color .2s" }}>{name}</span>
-      <span style={{ fontSize: isMobile ? 10 : 11, letterSpacing: 1, color: hov ? D : PEARL, fontFamily: MONO, textTransform: "uppercase", lineHeight: 1.6, transition: "color .2s", fontWeight: 500 }}>{desc}</span>
+      whileHover={{ scale: 1.02, y: -3 }} transition={{ duration: .2 }}
+      style={{ textDecoration: "none", background: hov ? G : "#0d0d0d", padding: "36px 28px", display: "flex", flexDirection: "column", border: `1px solid ${hov ? G : "rgba(201,168,76,0.3)"}`, cursor: "pointer", boxShadow: hov ? `0 0 24px rgba(201,168,76,0.4)` : "none", transition: "background .25s, box-shadow .25s" }}>
+      <span style={{ fontSize: 11, letterSpacing: 3, textTransform: "uppercase", fontFamily: MONO, color: hov ? D : G, marginBottom: 8, fontWeight: 600, transition: "color .2s" }}>{name}</span>
+      <span style={{ fontSize: 11, letterSpacing: 1, color: hov ? D : PEARL, fontFamily: MONO, textTransform: "uppercase", lineHeight: 1.6, transition: "color .2s", fontWeight: 500 }}>{desc}</span>
     </motion.a>
   )
 }
 
-function StrategicCard({ name, slug, desc, isMobile }: { name: string, slug: string, desc: string, isMobile: boolean }) {
+function StrategicCard({ name, slug, desc }: { name: string, slug: string, desc: string }) {
   const [hov, setHov] = useState(false)
   return (
     <motion.a href={`/${slug}`}
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      whileHover={{ scale: 1.02, y: -4 }}
-      transition={{ duration: .2 }}
-      style={{ textDecoration: "none", background: hov ? G : "#080808", padding: isMobile ? "18px 16px" : "40px 32px", display: "flex", flexDirection: "column", border: `1px solid ${hov ? G : "rgba(201,168,76,0.25)"}`, cursor: "pointer", boxShadow: hov ? `0 0 32px rgba(201,168,76,0.45)` : "none", transition: "background .25s, box-shadow .25s" }}>
+      whileHover={{ scale: 1.02, y: -4 }} transition={{ duration: .2 }}
+      style={{ textDecoration: "none", background: hov ? G : "#080808", padding: "40px 32px", display: "flex", flexDirection: "column", border: `1px solid ${hov ? G : "rgba(201,168,76,0.25)"}`, cursor: "pointer", boxShadow: hov ? `0 0 32px rgba(201,168,76,0.45)` : "none", transition: "background .25s, box-shadow .25s" }}>
       <span style={{ fontSize: 8, letterSpacing: 4, textTransform: "uppercase", fontFamily: MONO, color: hov ? D : G, marginBottom: 6, transition: "color .2s" }}>Strategic Ventures</span>
-      <span style={{ fontSize: isMobile ? 14 : 16, letterSpacing: 2, textTransform: "uppercase", fontFamily: MONO, color: hov ? D : "#FFFFFF", marginBottom: 8, fontWeight: 600, transition: "color .2s" }}>{name}</span>
-      <span style={{ fontSize: isMobile ? 10 : 11, letterSpacing: 1, color: hov ? D : PEARL, fontFamily: MONO, textTransform: "uppercase", lineHeight: 1.6, transition: "color .2s", fontWeight: 500 }}>{desc}</span>
+      <span style={{ fontSize: 16, letterSpacing: 2, textTransform: "uppercase", fontFamily: MONO, color: hov ? D : "#FFFFFF", marginBottom: 8, fontWeight: 600, transition: "color .2s" }}>{name}</span>
+      <span style={{ fontSize: 11, letterSpacing: 1, color: hov ? D : PEARL, fontFamily: MONO, textTransform: "uppercase", lineHeight: 1.6, transition: "color .2s", fontWeight: 500 }}>{desc}</span>
     </motion.a>
   )
 }
@@ -310,7 +347,7 @@ export default function Home() {
           "jobTitle": "Founder & CEO",
           "image": "https://tradeistanbulhub.com/founder.jpg",
           "url": "https://tradeistanbulhub.com/founder",
-          "knowsAbout": ["Turkish Export","B2B Wholesale","Furniture","Apparel","Footwear","Fabrics","Cosmetics","Perfumes","Home Textiles","Food & Beverage","Lighting","Building Materials","Home Appliances","Cleaning & Hygiene","Auto Parts","Tableware","Jewelry","Business Club","Business Tours","Medical Tourism","Tech Hub","Franchise Hub","CryptoCharm Official"],
+          "knowsAbout": ["Turkish Export","B2B Wholesale","Furniture","Apparel","Footwear","Fabrics","Cosmetics","Perfumes","Home Textiles","Food & Beverage","Lighting","Building Materials","Home Appliances","Cleaning & Hygiene","Auto Parts","Tableware","Jewelry"],
           "sameAs": ["https://linkedin.com/in/oleksandrpeters","https://instagram.com/oleksandr_peters","https://facebook.com/OleksandrPeters","https://youtube.com/@TRADEISTANBULHUB"],
           "worksFor": {
             "@type": "Organization",
@@ -323,41 +360,16 @@ export default function Home() {
         })
       }} />
 
-      <script type="application/ld+json" dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "How to buy Turkish products wholesale?", "acceptedAnswer": { "@type": "Answer", "text": "Contact Trade Istanbul Hub via WhatsApp. Oleksandr Peters personally verifies every factory and guarantees every shipment from Turkey." } },
-            { "@type": "Question", "name": "What products does Trade Istanbul Hub export?", "acceptedAnswer": { "@type": "Answer", "text": "Trade Istanbul Hub exports 15 product categories: Furniture, Apparel, Footwear, Fabrics, Cosmetics, Perfumes, Home Textiles, Food & Beverage, Lighting, Building Materials, Home Appliances, Cleaning & Hygiene, Auto Parts, Tableware, and Jewelry." } },
-            { "@type": "Question", "name": "Which countries does Trade Istanbul Hub ship to?", "acceptedAnswer": { "@type": "Answer", "text": "We ship to 40+ countries including USA, Brazil, Mexico, Germany, UK, UAE, Saudi Arabia, Nigeria, South Africa and more." } },
-            { "@type": "Question", "name": "Who is Oleksandr Peters?", "acceptedAnswer": { "@type": "Answer", "text": "Oleksandr Peters is the Founder & CEO of Trade Istanbul Hub LLC, registered in Florida, USA. He personally verifies every Turkish manufacturer and provides a personal guarantee for every transaction." } },
-            { "@type": "Question", "name": "What is the minimum order for Turkish wholesale?", "acceptedAnswer": { "@type": "Answer", "text": "Minimum orders vary by category. Contact us via WhatsApp for specific MOQ information for each product category." } }
-          ]
-        })
-      }} />
-
       <CookieBanner />
-
       <MobileBurgerMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
-      {menuOpen && (
-        <div onClick={() => setMenuOpen(false)}
-          style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", zIndex: 199 }} />
-      )}
+      {menuOpen && <div onClick={() => setMenuOpen(false)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", zIndex: 199 }} />}
 
       {/* HEADER */}
       <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: "rgba(10,10,10,0.97)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(201,168,76,0.1)" }}>
         <div style={{ height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", padding: isMobile ? "0 16px" : "0 48px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-            {/* DESKTOP: увеличен gap между лого и текстом */}
             <img src="/logo.png" alt="TIG" style={{ height: isMobile ? 28 : 32, width: "auto" }} onError={e => { e.currentTarget.style.display = "none" }} />
-            {!isMobile && (
-              <span style={{ fontFamily: "Georgia,serif", fontSize: 17, letterSpacing: 7, color: G, textTransform: "uppercase", fontWeight: 400 }}>Trade Istanbul Hub</span>
-            )}
-            {/* MOBILE: полное название вместо TIH */}
-            {isMobile && (
-              <span style={{ fontFamily: "Georgia,serif", fontSize: 11, letterSpacing: 2, color: G, textTransform: "uppercase", fontWeight: 400 }}>Trade Istanbul Hub</span>
-            )}
+            <span style={{ fontFamily: "Georgia,serif", fontSize: isMobile ? 11 : 17, letterSpacing: isMobile ? 2 : 7, color: G, textTransform: "uppercase", fontWeight: 400 }}>Trade Istanbul Hub</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             {!isMobile && (
@@ -393,54 +405,46 @@ export default function Home() {
 
         {isMobile ? (
           <div>
-            {/* MOBILE: надпись под шапкой увеличена на 10% */}
-            <div style={{ textAlign: "center", padding: "20px 16px 16px", borderBottom: "1px solid rgba(201,168,76,0.08)" }}>
+            <div style={{ textAlign: "center", padding: "16px 16px 12px", borderBottom: "1px solid rgba(201,168,76,0.08)" }}>
               <div style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, lineHeight: 2 }}>
                 Trade Istanbul Hub LLC<br />B2B Wholesale · Istanbul · Florida, USA
               </div>
             </div>
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
-              onClick={() => window.location.href = '/founder'}
-              style={{ cursor: "pointer", width: "100%", position: "relative" }}>
+            <motion.div animate={{ y: [0, -6, 0] }} transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
+              onClick={() => window.location.href = '/founder'} style={{ cursor: "pointer", width: "100%" }}>
               <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden" }}>
-                <img src="/founder.jpg" alt="Oleksandr Peters — Founder Trade Istanbul Hub"
+                <img src="/founder.jpg" alt="Oleksandr Peters"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", display: "block" }} />
               </div>
             </motion.div>
-            <div style={{ textAlign: "center", padding: "12px 16px", background: "rgba(201,168,76,0.03)", borderBottom: "1px solid rgba(201,168,76,0.08)" }}>
+            <div style={{ textAlign: "center", padding: "10px 16px", background: "rgba(201,168,76,0.03)", borderBottom: "1px solid rgba(201,168,76,0.08)" }}>
               <div style={{ fontSize: 10, color: G, fontFamily: "Georgia,serif", fontStyle: "italic", letterSpacing: 3 }}>— Personal Guarantee —</div>
             </div>
-
-            {/* MOBILE: золотая рамочка вокруг текста + цифр */}
-            <div style={{ margin: "16px", border: "1px solid rgba(201,168,76,0.3)", padding: "20px 16px" }}>
-              <p style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", marginBottom: 12, fontFamily: MONO, fontWeight: 600 }}>Premium Turkish Export · Managed B2B Sourcing</p>
-              <h2 style={{ fontFamily: "Georgia,serif", fontSize: 28, fontWeight: 300, color: "#F5F3EE", marginBottom: 4, lineHeight: 1.1 }}>Oleksandr Peters</h2>
-              <div style={{ fontSize: 9, letterSpacing: 2, color: PEARL, textTransform: "uppercase", fontFamily: MONO, marginBottom: 16, fontWeight: 500 }}>Founder & CEO · Trade Istanbul Hub LLC</div>
-              <p style={{ fontSize: 13, color: PEARL, lineHeight: 1.8, fontFamily: "Georgia,serif", marginBottom: 20, fontStyle: "italic", fontWeight: 400 }}>
+            {/* ЗОЛОТАЯ РАМОЧКА */}
+            <div style={{ margin: "16px", border: "1px solid rgba(201,168,76,0.35)", padding: "20px 16px" }}>
+              <p style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", marginBottom: 10, fontFamily: MONO, fontWeight: 600 }}>Premium Turkish Export · Managed B2B Sourcing</p>
+              <h2 style={{ fontFamily: "Georgia,serif", fontSize: 26, fontWeight: 300, color: "#F5F3EE", marginBottom: 4, lineHeight: 1.1 }}>Oleksandr Peters</h2>
+              <div style={{ fontSize: 9, letterSpacing: 2, color: PEARL, textTransform: "uppercase", fontFamily: MONO, marginBottom: 14, fontWeight: 500 }}>Founder & CEO · Trade Istanbul Hub LLC</div>
+              <p style={{ fontSize: 12, color: PEARL, lineHeight: 1.8, fontFamily: "Georgia,serif", marginBottom: 16, fontStyle: "italic", fontWeight: 400 }}>
                 "Every factory verified personally. Every shipment backed by my name. This is not a marketplace — this is a partnership built on trust."
               </p>
-              {/* MOBILE: цифры внутри рамочки */}
-              <div style={{ borderTop: "1px solid rgba(201,168,76,0.15)", paddingTop: 16, display: "flex", gap: 16, flexWrap: "wrap", justifyContent: "space-between" }}>
+              <div style={{ borderTop: "1px solid rgba(201,168,76,0.2)", paddingTop: 14, display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "space-between" }}>
                 {[["15","Categories"],["5","Verticals"],["500+","Factories"],["40+","Countries"]].map(([n,l]) => (
-                  <div key={l} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minWidth: 60 }}>
-                    <div style={{ fontFamily: "Georgia,serif", fontSize: 24, color: G, fontWeight: 300, lineHeight: 1, textAlign: "center" }}>{n}</div>
-                    <div style={{ fontSize: 7, letterSpacing: 2, color: PEARL, textTransform: "uppercase", marginTop: 4, fontFamily: MONO, fontWeight: 500, textAlign: "center" }}>{l}</div>
+                  <div key={l} style={{ display: "flex", flexDirection: "column", alignItems: "center", minWidth: 55 }}>
+                    <div style={{ fontFamily: "Georgia,serif", fontSize: 22, color: G, fontWeight: 300, lineHeight: 1, textAlign: "center" }}>{n}</div>
+                    <div style={{ fontSize: 7, letterSpacing: 2, color: PEARL, textTransform: "uppercase", marginTop: 3, fontFamily: MONO, fontWeight: 500, textAlign: "center" }}>{l}</div>
                   </div>
                 ))}
               </div>
             </div>
-
-            {/* MOBILE: кнопки соцсетей под рамочкой */}
+            {/* КНОПКИ ПОД РАМОЧКОЙ */}
             <div style={{ padding: "0 16px" }}>
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 16 }}>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
                 {Object.entries(FOUNDER_SOCIAL).map(([name, url]) => (
                   <a key={name} href={url} target="_blank" style={{ padding: "7px 12px", border: "1px solid rgba(201,168,76,0.25)", background: "none", color: PEARL, fontSize: 9, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, fontWeight: 500 }}>{name}</a>
                 ))}
               </div>
-              {/* MOBILE: кнопки WhatsApp/Founder/Blog с большим gap */}
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 32 }}>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 28 }}>
                 {[["WhatsApp", WA, true], ["Founder Story", "/founder", false], ["Blog", "/blog", false]].map(([label, href, isWa]) => (
                   <a key={String(label)} href={String(href)} target={isWa ? "_blank" : "_self"}
                     style={{ padding: "10px 14px", border: `1px solid ${G}`, color: G, fontSize: 9, letterSpacing: 2, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, fontWeight: 600 }}>
@@ -451,7 +455,7 @@ export default function Home() {
             </div>
           </div>
         ) : (
-          /* DESKTOP */
+          /* DESKTOP HERO */
           <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
             <div style={{ textAlign: "center", marginBottom: 32 }}>
               <div style={{ fontSize: 10, letterSpacing: 6, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>
@@ -459,7 +463,7 @@ export default function Home() {
               </div>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "380px 1fr", gap: 64, alignItems: "flex-start" }}>
-              <div style={{ paddingTop: 0 }}>
+              <div>
                 <motion.div
                   style={{ rotateX, rotateY, transformStyle: "preserve-3d", perspective: 1000, cursor: "pointer" }}
                   animate={{ y: [0, -12, 0] }}
@@ -469,60 +473,45 @@ export default function Home() {
                   onMouseLeave={handlePhotoLeave}
                   onClick={() => window.location.href = '/founder'}
                   whileHover={{ scale: 1.02 }}>
-                  {/* DESKTOP: objectFit contain — полное фото без обрезки */}
-                  <div style={{
-                    width: "100%", aspectRatio: "4/3", overflow: "hidden",
-                    border: `1px solid rgba(201,168,76,${photoHov ? "0.5" : "0.15"})`,
-                    transition: "border-color .3s",
-                    background: "#080808",
-                    display: "flex", alignItems: "center", justifyContent: "center"
-                  }}>
+                  <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden", border: `1px solid rgba(201,168,76,${photoHov ? "0.5" : "0.15"})`, transition: "border-color .3s", background: "#080808", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <img src="/founder.jpg" alt="Oleksandr Peters"
                       style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", display: "block" }} />
                   </div>
                 </motion.div>
                 <div style={{ textAlign: "center", marginTop: 12, fontSize: 10, color: G, fontFamily: "Georgia,serif", fontStyle: "italic", letterSpacing: 3 }}>— Personal Guarantee —</div>
               </div>
-
               <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .9 }}>
                 <p style={{ fontSize: 11, letterSpacing: 4, color: G, textTransform: "uppercase", marginBottom: 28, fontFamily: MONO, fontWeight: 600 }}>Premium Turkish Export · Managed B2B Sourcing</p>
-
                 <motion.h2
-                  onMouseEnter={() => setFounderHov(true)}
-                  onMouseLeave={() => setFounderHov(false)}
+                  onMouseEnter={() => setFounderHov(true)} onMouseLeave={() => setFounderHov(false)}
                   animate={{ letterSpacing: founderHov ? "6px" : "0px", color: founderHov ? G : "#F5F3EE" }}
                   transition={{ duration: .4 }}
                   style={{ fontFamily: "Georgia,serif", fontSize: 36, fontWeight: 300, marginBottom: 6, lineHeight: 1.1, cursor: "default" }}>
                   Oleksandr Peters
                 </motion.h2>
-
                 <div style={{ fontSize: 11, letterSpacing: 2, color: PEARL, textTransform: "uppercase", fontFamily: MONO, marginBottom: 24, fontWeight: 500 }}>Founder & CEO · Trade Istanbul Hub LLC</div>
                 <p style={{ fontSize: 14, color: PEARL, lineHeight: 1.85, fontFamily: "Georgia,serif", marginBottom: 24, fontStyle: "italic", fontWeight: 400, maxWidth: 400 }}>
                   "Every factory verified personally. Every shipment backed by my name. This is not a marketplace — this is a partnership built on trust."
                 </p>
-
                 <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 16 }}>
                   {Object.entries(FOUNDER_SOCIAL).map(([name, url]) => (
                     <a key={name} href={url} target="_blank" style={{ padding: "8px 16px", border: "1px solid rgba(201,168,76,0.25)", background: "none", color: PEARL, fontSize: 9, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, transition: "all .2s", fontWeight: 500 }}
-                      onMouseEnter={e => { e.currentTarget.style.borderColor = G; e.currentTarget.style.color = G; e.currentTarget.style.boxShadow = `0 0 12px rgba(201,168,76,0.3)` }}
-                      onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.25)"; e.currentTarget.style.color = PEARL; e.currentTarget.style.boxShadow = "none" }}>
+                      onMouseEnter={e => { e.currentTarget.style.borderColor = G; e.currentTarget.style.color = G }}
+                      onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.25)"; e.currentTarget.style.color = PEARL }}>
                       {name}
                     </a>
                   ))}
                 </div>
-
                 <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 24 }}>
                   {[["WhatsApp", WA, true], ["Founder Story", "/founder", false], ["Blog", "/blog", false]].map(([label, href, isWa]) => (
                     <a key={String(label)} href={String(href)} target={isWa ? "_blank" : "_self"}
                       style={{ padding: "9px 20px", border: `1px solid ${G}`, color: G, fontSize: 9, letterSpacing: 2, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, transition: "all .25s", fontWeight: 600 }}
-                      onMouseEnter={e => { e.currentTarget.style.background = G; e.currentTarget.style.color = D; e.currentTarget.style.boxShadow = `0 0 20px rgba(201,168,76,0.4)` }}
-                      onMouseLeave={e => { e.currentTarget.style.background = "none"; e.currentTarget.style.color = G; e.currentTarget.style.boxShadow = "none" }}>
+                      onMouseEnter={e => { e.currentTarget.style.background = G; e.currentTarget.style.color = D }}
+                      onMouseLeave={e => { e.currentTarget.style.background = "none"; e.currentTarget.style.color = G }}>
                       {String(label)}
                     </a>
                   ))}
                 </div>
-
-                {/* DESKTOP: цифры по центру клеточки */}
                 <div style={{ borderTop: "1px solid rgba(201,168,76,0.08)", paddingTop: 20, paddingBottom: 20, display: "flex", gap: 36, flexWrap: "wrap", alignItems: "center" }}>
                   {[["15","Product Categories"],["5","Service Verticals"],["500+","Manufacturers"],["40+","Countries"]].map(([n,l]) => (
                     <div key={l} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minWidth: 80 }}>
@@ -537,73 +526,112 @@ export default function Home() {
         )}
       </section>
 
-      {/* SERVICES — сразу под hero */}
-      <section style={{ padding: isMobile ? "16px 16px 32px" : "4px 48px 48px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: isMobile ? 14 : 24 }}>
+      {/* SERVICES */}
+      {isMobile ? (
+        <section style={{ padding: "16px 0 24px" }}>
+          <div style={{ padding: "0 16px", display: "flex", alignItems: "center", gap: 20, marginBottom: 12 }}>
             <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Services</span>
             <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.12)" }} />
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3,1fr)", gap: isMobile ? 6 : 2 }}>
-            {SVCS.map(s => <SvcCard key={s.slug} {...s} isMobile={isMobile} />)}
+          <MobileBannerScroll items={SVCS.map(s => ({ name: s.name, slug: s.slug, banner: s.banner }))} />
+        </section>
+      ) : (
+        <section style={{ padding: "4px 48px 48px" }}>
+          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 24 }}>
+              <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Services</span>
+              <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.12)" }} />
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2 }}>
+              {SVCS.map(s => <SvcCard key={s.slug} {...s} isMobile={false} />)}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* STRATEGIC VENTURES */}
-      <section style={{ padding: isMobile ? "0 16px 32px" : "0 48px 48px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: isMobile ? 14 : 24 }}>
+      {isMobile ? (
+        <section style={{ padding: "0 0 24px" }}>
+          <div style={{ padding: "0 16px", display: "flex", alignItems: "center", gap: 20, marginBottom: 12 }}>
             <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Strategic Ventures</span>
             <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.12)" }} />
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(2,1fr)", gap: isMobile ? 6 : 2 }}>
-            <StrategicCard name="Tech Hub" slug="techhub" desc="Turkey Digital Export · $120B · SaaS, Fintech, Game Dev" isMobile={isMobile} />
-            <StrategicCard name="Franchise Hub" slug="franchisehub" desc="Scale Your Brand · F&B, Retail, Service Franchises" isMobile={isMobile} />
+          <MobileBannerScroll items={[
+            { name: "Tech Hub", slug: "techhub", banner: "/banner-tech.jpg" },
+            { name: "Franchise Hub", slug: "franchisehub", banner: "/banner-franchise.jpg" },
+          ]} />
+        </section>
+      ) : (
+        <section style={{ padding: "0 48px 48px" }}>
+          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 24 }}>
+              <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Strategic Ventures</span>
+              <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.12)" }} />
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 2 }}>
+              <StrategicCard name="Tech Hub" slug="techhub" desc="Turkey Digital Export · $120B · SaaS, Fintech, Game Dev" />
+              <StrategicCard name="Franchise Hub" slug="franchisehub" desc="Scale Your Brand · F&B, Retail, Service Franchises" />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* BRAND — CryptoCharm */}
-      <section style={{ padding: isMobile ? "0 16px 24px" : "0 48px 40px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 8 }}>
-            <span style={{ fontSize: isMobile ? 8 : 10, letterSpacing: 4, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Brand</span>
+      {/* BRAND CryptoCharm */}
+      {isMobile ? (
+        <section style={{ padding: "0 0 24px" }}>
+          <div style={{ padding: "0 16px", display: "flex", alignItems: "center", gap: 20, marginBottom: 12 }}>
+            <span style={{ fontSize: 8, letterSpacing: 4, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Brand</span>
             <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.08)" }} />
           </div>
-          <CatRow name="CryptoCharm Official" slug="cryptocharm" isMobile={isMobile} />
-        </div>
-      </section>
+          <MobileBannerScroll items={[{ name: "CryptoCharm Official", slug: "cryptocharm", banner: "/baner-cryptocharm.jpg" }]} />
+        </section>
+      ) : (
+        <section style={{ padding: "0 48px 40px" }}>
+          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 8 }}>
+              <span style={{ fontSize: 10, letterSpacing: 4, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Brand</span>
+              <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.08)" }} />
+            </div>
+            <CatRow name="CryptoCharm Official" slug="cryptocharm" isMobile={false} />
+          </div>
+        </section>
+      )}
 
       {/* КАТЕГОРИИ */}
       {GROUPS.map(group => (
-        <section key={group.title} style={{ padding: isMobile ? "0 16px 24px" : "0 48px 48px" }}>
-          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 8 }}>
-              <span style={{ fontSize: isMobile ? 8 : 10, letterSpacing: 4, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>{group.title}</span>
+        isMobile ? (
+          <section key={group.title} style={{ padding: "0 0 24px" }}>
+            <div style={{ padding: "0 16px", display: "flex", alignItems: "center", gap: 20, marginBottom: 12 }}>
+              <span style={{ fontSize: 8, letterSpacing: 4, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>{group.title}</span>
               <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.08)" }} />
             </div>
-            {CATS.filter(c => group.cats.includes(c.slug)).map(c => <CatRow key={c.slug} name={c.name} slug={c.slug} isMobile={isMobile} />)}
-          </div>
-        </section>
+            <MobileBannerScroll items={CATS.filter(c => group.cats.includes(c.slug)).map(c => ({ name: c.name, slug: c.slug, banner: CAT_BANNERS[c.slug] }))} />
+          </section>
+        ) : (
+          <section key={group.title} style={{ padding: "0 48px 48px" }}>
+            <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 8 }}>
+                <span style={{ fontSize: 10, letterSpacing: 4, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>{group.title}</span>
+                <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.08)" }} />
+              </div>
+              {CATS.filter(c => group.cats.includes(c.slug)).map(c => <CatRow key={c.slug} name={c.name} slug={c.slug} isMobile={false} />)}
+            </div>
+          </section>
+        )
       ))}
 
-      {/* SOURCING SHOWCASE — уменьшен на 20% */}
+      {/* SOURCING SHOWCASE */}
       <section style={{ padding: isMobile ? "32px 16px 40px" : "40px 48px 48px", textAlign: "center" }}>
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
-          <div style={{ fontSize: 9, letterSpacing: 6, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, marginBottom: 16 }}>
-            Sourcing Showcase
-          </div>
-          <h2 style={{ fontFamily: "Georgia,serif", fontSize: isMobile ? 18 : 26, fontWeight: 300, color: PEARL, marginBottom: 12, lineHeight: 1.3, letterSpacing: 1 }}>
-            Verified. Inspected. Delivered.
-          </h2>
+          <div style={{ fontSize: 9, letterSpacing: 6, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, marginBottom: 16 }}>Sourcing Showcase</div>
+          <h2 style={{ fontFamily: "Georgia,serif", fontSize: isMobile ? 18 : 26, fontWeight: 300, color: PEARL, marginBottom: 12, lineHeight: 1.3, letterSpacing: 1 }}>Verified. Inspected. Delivered.</h2>
           <p style={{ fontSize: isMobile ? 9 : 10, color: "rgba(229,227,238,0.45)", fontFamily: MONO, letterSpacing: 2, lineHeight: 1.9, marginBottom: 28, textTransform: "uppercase" }}>
             A visual archive of our verified manufacturing processes,<br />factories, workshops, and quality control inspections.
           </p>
           <a href="/gallery"
             style={{ display: "inline-block", padding: isMobile ? "10px 24px" : "12px 32px", border: `1px solid ${G}`, color: G, fontSize: 9, letterSpacing: 3, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, fontWeight: 600, transition: "all .25s" }}
-            onMouseEnter={e => { e.currentTarget.style.background = G; e.currentTarget.style.color = D; e.currentTarget.style.boxShadow = `0 0 24px rgba(201,168,76,0.3)` }}
-            onMouseLeave={e => { e.currentTarget.style.background = "none"; e.currentTarget.style.color = G; e.currentTarget.style.boxShadow = "none" }}>
+            onMouseEnter={e => { e.currentTarget.style.background = G; e.currentTarget.style.color = D }}
+            onMouseLeave={e => { e.currentTarget.style.background = "none"; e.currentTarget.style.color = G }}>
             Explore Production Gallery →
           </a>
         </div>
