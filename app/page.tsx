@@ -400,9 +400,9 @@ export default function Home() {
               transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
               onClick={() => window.location.href = '/founder'}
               style={{ cursor: "pointer", width: "100%", position: "relative" }}>
-              <div style={{ width: "100%", aspectRatio: "3/4", overflow: "hidden" }}>
+              <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden" }}>
                 <img src="/founder.jpg" alt="Oleksandr Peters — Founder Trade Istanbul Hub"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 10%", display: "block" }} />
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", display: "block" }} />
               </div>
             </motion.div>
             <div style={{ textAlign: "center", padding: "12px 16px", background: "rgba(201,168,76,0.03)", borderBottom: "1px solid rgba(201,168,76,0.08)" }}>
