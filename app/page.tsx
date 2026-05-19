@@ -562,7 +562,7 @@ export default function Home() {
           ]} />
         </section>
       ) : (
-        <section style={{ padding: "0 48px 48px" }}>
+        <section style={{ padding: "0 48px 16px" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 24 }}>
               <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Strategic Ventures</span>
