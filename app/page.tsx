@@ -165,7 +165,7 @@ function NavItem({ label, items }: { label: string, items: { name: string, slug:
           <motion.div initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}
             style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", background: "rgba(6,6,6,0.98)", border: `1px solid ${isSpecial ? "rgba(201,168,76,0.3)" : "rgba(201,168,76,0.15)"}`, backdropFilter: "blur(20px)", padding: "12px 0", minWidth: 220, zIndex: 300 }}>
             {isSpecial && (
-              <div style={{ padding: "6px 20px 10px", fontSize: 8, letterSpacing: 4, color: G, textTransform: "uppercase", fontFamily: MONO, borderBottom: "1px solid rgba(201,168,76,0.1)", marginBottom: 4 }}>
+              <div style={{ padding: "6px 20px 10px", fontSize: 12, letterSpacing: 4, color: G, textTransform: "uppercase", fontFamily: MONO, borderBottom: "1px solid rgba(201,168,76,0.1)", marginBottom: 4 }}>
                 {label === "Tech Hub" ? "Turkey Digital Export · $120B" : "Scale Your Brand · Turkish Franchises"}
               </div>
             )}
@@ -551,7 +551,7 @@ export default function Home() {
 
       {/* STRATEGIC VENTURES */}
       {isMobile ? (
-        <section style={{ padding: "0 0 24px" }}>
+        <section style={{ padding: "0 0 40px" }}>
           <div style={{ padding: "0 16px", display: "flex", alignItems: "center", gap: 20, marginBottom: 12 }}>
             <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Strategic Ventures</span>
             <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.12)" }} />
