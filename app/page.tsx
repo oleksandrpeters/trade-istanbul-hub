@@ -112,7 +112,7 @@ function MobileBannerScroll({ items }: { items: { name: string, slug: string, ba
     <div style={{ display: "flex", overflowX: "auto", gap: 8, paddingLeft: 16, paddingRight: 16, scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
       {items.map(item => (
         <a key={item.slug} href={`/${item.slug}`} style={{
-          textDecoration: "none", flexShrink: 0, width: "85vw", scrollSnapAlign: "start",
+          textDecoration: "none", flexShrink: 0, width: "78vw", scrollSnapAlign: "start",
           position: "relative", overflow: "hidden"
         }}>
           <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden" }}>
