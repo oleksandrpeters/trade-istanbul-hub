@@ -107,9 +107,9 @@ const PEARL = "#E5E3EE"
 const MONO = "'Courier New', monospace"
 
 // Горизонтальный скролл с вертикальными баннерами
-function MobileBannerScroll({ items }: { items: { name: string, slug: string, banner: string, label?: string }[] }) {
+function MobileBannerScroll({ items }: { items: { name: string, slug: string, banner: string }[] }) {
   return (
-    <div style={{ display: "flex", overflowX: "auto", gap: 8, paddingLeft: 16, paddingRight: 16, scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
+    <div style={{ display: "flex", overflowX: "auto", gap: 8, paddingLeft: 16, paddingRight: 16, scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", backgroundImage: "linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px)", backgroundSize: "60px 60px" }}>
       {items.map(item => (
         <a key={item.slug} href={`/${item.slug}`} style={{
           textDecoration: "none", flexShrink: 0, width: "78vw", scrollSnapAlign: "start",
@@ -119,7 +119,9 @@ function MobileBannerScroll({ items }: { items: { name: string, slug: string, ba
             <img src={item.banner} alt={item.name}
               style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
           </div>
-          
+          <div style={{ textAlign: "center", padding: "8px 0 12px" }}>
+            <span style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, border: 1px solid ${G}, padding: "6px 16px" }}>EXPLORE →</span>
+          </div>
         </a>
       ))}
     </div>
