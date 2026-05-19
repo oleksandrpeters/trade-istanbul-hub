@@ -109,7 +109,7 @@ const MONO = "'Courier New', monospace"
 // Горизонтальный скролл с вертикальными баннерами
 function MobileBannerScroll({ items }: { items: { name: string, slug: string, banner: string }[] }) {
   return (
-    <div style={{ display: "flex", overflowX: "auto", gap: 8, paddingLeft: 16, paddingRight: 16, scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", backgroundImage: "linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px)", backgroundSize: "60px 60px" }}>
+    <div style={{ display: "flex", overflowX: "auto", gap: 8, paddingLeft: 0, paddingRight: 0, scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", backgroundImage: "linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px)", backgroundSize: "60px 60px" }}>
       {items.map(item => (
         <a key={item.slug} href={`/${item.slug}`} style={{
           textDecoration: "none", flexShrink: 0, width: "82vw", scrollSnapAlign: "start",
