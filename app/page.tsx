@@ -622,7 +622,7 @@ export default function Home() {
 
       {/* SOURCING SHOWCASE */}
       <section style={{ padding: isMobile ? "32px 16px 40px" : "40px 48px 48px", textAlign: "center" }}>
-        <div style={{ maxWidth: 600, margin: "0 auto" }}>
+        <div style={{ maxWidth: 450, margin: "0 auto" }}>
           <div style={{ fontSize: 9, letterSpacing: 6, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, marginBottom: 16 }}>Sourcing Showcase</div>
           <h2 style={{ fontFamily: "Georgia,serif", fontSize: isMobile ? 18 : 26, fontWeight: 300, color: PEARL, marginBottom: 12, lineHeight: 1.3, letterSpacing: 1 }}>Verified. Inspected. Delivered.</h2>
           <p style={{ fontSize: isMobile ? 9 : 10, color: "rgba(229,227,238,0.45)", fontFamily: MONO, letterSpacing: 2, lineHeight: 1.9, marginBottom: 28, textTransform: "uppercase" }}>
