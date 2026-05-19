@@ -528,7 +528,7 @@ export default function Home() {
 
       {/* SERVICES */}
       {isMobile ? (
-        <section style={{ padding: "16px 0 24px", background: "#0A0A0A", backgroundImage: "linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px)", backgroundSize: "60px 60px" }}>
+        <section style={{ padding: "16px 0 24px", background: "#1a1005", backgroundImage: "linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px)", backgroundSize: "60px 60px" }}>
           <div style={{ padding: "0 16px", display: "flex", alignItems: "center", gap: 20, marginBottom: 12 }}>
             <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Services</span>
             <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.12)" }} />
