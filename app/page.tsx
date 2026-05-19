@@ -475,7 +475,7 @@ export default function Home() {
                   whileHover={{ scale: 1.02 }}>
                   <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden", border: `1px solid rgba(201,168,76,${photoHov ? "0.5" : "0.15"})`, transition: "border-color .3s", background: "#080808", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <img src="/founder.jpg" alt="Oleksandr Peters"
-                      style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", display: "block" }} />
+                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
                   </div>
                 </motion.div>
                 <div style={{ textAlign: "center", marginTop: 12, fontSize: 10, color: G, fontFamily: "Georgia,serif", fontStyle: "italic", letterSpacing: 3 }}>— Personal Guarantee —</div>
