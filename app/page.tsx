@@ -120,7 +120,7 @@ function MobileBannerScroll({ items }: { items: { name: string, slug: string, ba
               style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
           </div>
           <div style={{ position: "absolute", bottom: 8, left: 0, right: 0, textAlign: "center" }}>
-            <span style={{ fontSize: 9, letterSpacing: 3, color: "#FFFFFF", textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, border: "1px solid #FFFFFF", padding: "6px 16px" }}>EXPLORE →</span>
+            <span style={{ fontSize: 9, letterSpacing: 3, color: "#FFFFFF", textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, border: "1px solid #FFFFFF", padding: "4px 10px" }}>EXPLORE →</span>
           </div>
         </a>
       ))}
@@ -441,7 +441,7 @@ export default function Home() {
             <div style={{ padding: "0 16px" }}>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
                 {Object.entries(FOUNDER_SOCIAL).map(([name, url]) => (
-                  <a key={name} href={url} target="_blank" style={{ padding: "7px 12px", border: "1px solid rgba(201,168,76,0.25)", background: "none", color: PEARL, fontSize: 9, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, fontWeight: 500 }}>{name}</a>
+                  <a key={name} href={url} target="_blank" style={{ padding: "7px 12px", border: "1px solid rgba(201,168,76,0.35)", background: "none", color: PEARL, fontSize: 9, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, fontWeight: 500 }}>{name}</a>
                 ))}
               </div>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 28 }}>
