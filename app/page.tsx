@@ -398,7 +398,7 @@ export default function Home() {
       </header>
 
       {/* HERO */}
-      <section style={{ minHeight: "100vh", padding: isMobile ? "72px 0 0" : "130px 48px 0", position: "relative", overflow: "hidden", background: `radial-gradient(ellipse at 30% 50%, #1a1005 0%, ${D} 65%)` }}>
+      <section style={{ minHeight: "auto", padding: isMobile ? "72px 0 0" : "130px 48px 0", position: "relative", overflow: "hidden", background: `radial-gradient(ellipse at 30% 50%, #1a1005 0%, ${D} 65%)` }}>
         {!isMobile && (
           <motion.div style={{ position: "absolute", inset: -60, x: gridX, y: gridY, backgroundImage: "linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
         )}
