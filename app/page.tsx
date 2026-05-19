@@ -421,7 +421,7 @@ export default function Home() {
               <div style={{ fontSize: 10, color: G, fontFamily: "Georgia,serif", fontStyle: "italic", letterSpacing: 3 }}>— Personal Guarantee —</div>
             </div>
             {/* ЗОЛОТАЯ РАМОЧКА */}
-            <div style={{ margin: "16px", border: "1px solid rgba(201,168,76,1)", padding: "20px 16px" }}>
+            <div style={{ margin: "16px", border: "1px solid rgba(201,168,76,0.12)", padding: "20px 16px" }}>
               <p style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", marginBottom: 10, fontFamily: MONO, fontWeight: 600 }}>Premium Turkish Export · Managed B2B Sourcing</p>
               <h2 style={{ fontFamily: "Georgia,serif", fontSize: 26, fontWeight: 300, color: "#F5F3EE", marginBottom: 4, lineHeight: 1.1 }}>Oleksandr Peters</h2>
               <div style={{ fontSize: 9, letterSpacing: 2, color: PEARL, textTransform: "uppercase", fontFamily: MONO, marginBottom: 14, fontWeight: 500 }}>Founder & CEO · Trade Istanbul Hub LLC</div>
@@ -528,7 +528,7 @@ export default function Home() {
 
       {/* SERVICES */}
       {isMobile ? (
-        <section style={{ padding: "16px 0 24px", background: "#1a1005", backgroundImage: "linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px)", backgroundSize: "60px 60px" }}>
+        <section style={{ padding: "16px 0 24px", background: "#0A0A0A", backgroundImage: "linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px)", backgroundSize: "60px 60px" }}>
           <div style={{ padding: "0 16px", display: "flex", alignItems: "center", gap: 20, marginBottom: 12 }}>
             <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Services</span>
             <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.12)" }} />
