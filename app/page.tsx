@@ -113,7 +113,7 @@ function MobileBannerScroll({ items }: { items: { name: string, slug: string, ba
       {items.map(item => (
         <a key={item.slug} href={`/${item.slug}`} style={{
           textDecoration: "none", flexShrink: 0, width: "100vw", scrollSnapAlign: "start",
-          position: "relative", overflow: "hidden", border: "1px solid rgba(201,168,76,0.2)"
+          position: "relative", overflow: "hidden"
         }}>
           <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden" }}>
             <img src={item.banner} alt={item.name}
@@ -473,7 +473,7 @@ export default function Home() {
                   onMouseLeave={handlePhotoLeave}
                   onClick={() => window.location.href = '/founder'}
                   whileHover={{ scale: 1.02 }}>
-                  <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden", border: `1px solid rgba(201,168,76,${photoHov ? "0.5" : "0.15"})`, transition: "border-color .3s", background: "#080808", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden", border: `1px solid rgba(201,168,76,${photoHov ? "0.5" : "0.15"})`, transition: "border-color .3s", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <img src="/founder.jpg" alt="Oleksandr Peters"
                       style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
                   </div>
