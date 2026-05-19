@@ -117,7 +117,7 @@ function MobileBannerScroll({ items }: { items: { name: string, slug: string, ba
         }}>
           <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden" }}>
             <img src={item.banner} alt={item.name}
-              style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
           </div>
           <div style={{ position: "absolute", bottom: 8, left: 0, right: 0, textAlign: "center" }}>
             <span style={{ fontSize: 9, letterSpacing: 3, color: "#FFFFFF", textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, border: "1px solid #FFFFFF", padding: "4px 10px" }}>EXPLORE →</span>
