@@ -115,7 +115,7 @@ function MobileBannerScroll({ items }: { items: { name: string, slug: string, ba
           textDecoration: "none", flexShrink: 0, width: "82vw", scrollSnapAlign: "start",
           position: "relative", overflow: "hidden"
         }}>
-          <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden" }}>
+          <div style={{ width: "100%", aspectRatio: "3/4", overflow: "hidden" }}>
             <img src={item.banner} alt={item.name}
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
           </div>
