@@ -512,7 +512,7 @@ export default function Home() {
                     </a>
                   ))}
                 </div>
-                <div style={{ borderTop: "1px solid rgba(201,168,76,0.08)", paddingTop: 20, paddingBottom: 20, display: "flex", gap: 36, flexWrap: "wrap", alignItems: "center" }}>
+                <div style={{ borderTop: "1px solid rgba(201,168,76,0.08)", paddingTop: 8, paddingBottom: 0, display: "flex", gap: 36, flexWrap: "wrap", alignItems: "center" }}>
                   {[["15","Product Categories"],["5","Service Verticals"],["500+","Manufacturers"],["40+","Countries"]].map(([n,l]) => (
                     <div key={l} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minWidth: 80 }}>
                       <div style={{ fontFamily: "Georgia,serif", fontSize: 36, color: G, fontWeight: 300, lineHeight: 1, textAlign: "center" }}>{n}</div>
