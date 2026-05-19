@@ -120,7 +120,7 @@ function MobileBannerScroll({ items }: { items: { name: string, slug: string, ba
               style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
           </div>
           <div style={{ position: "absolute", bottom: 8, left: 0, right: 0, textAlign: "center" }}>
-            <span style={{ fontSize: 9, letterSpacing: 3, color: "#000000", textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, border: "1px solid #000000", padding: "6px 16px" }}>EXPLORE →</span>
+            <span style={{ fontSize: 9, letterSpacing: 3, color: "#FFFFFF", textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, border: "1px solid #FFFFFF", padding: "6px 16px" }}>EXPLORE →</span>
           </div>
         </a>
       ))}
@@ -163,7 +163,7 @@ function NavItem({ label, items }: { label: string, items: { name: string, slug:
       <AnimatePresence>
         {open && (
           <motion.div initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}
-            style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", background: "rgba(6,6,6,0.98)", border: `1px solid ${isSpecial ? "rgba(201,168,76,0.3)" : "rgba(201,168,76,0.15)"}`, backdropFilter: "blur(20px)", padding: "12px 0", minWidth: 220, zIndex: 300 }}>
+            style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", background: "rgba(6,6,6,0.98)", border: `1px solid ${isSpecial ? "rgba(201,168,76,0.3)" : "rgba(201,168,76,0.25)"}`, backdropFilter: "blur(20px)", padding: "12px 0", minWidth: 220, zIndex: 300 }}>
             {isSpecial && (
               <div style={{ padding: "6px 20px 10px", fontSize: 12, letterSpacing: 4, color: G, textTransform: "uppercase", fontFamily: MONO, borderBottom: "1px solid rgba(201,168,76,0.1)", marginBottom: 4 }}>
                 {label === "Tech Hub" ? "Turkey Digital Export · $120B" : "Scale Your Brand · Turkish Franchises"}
