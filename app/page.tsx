@@ -119,7 +119,7 @@ function MobileBannerScroll({ items }: { items: { name: string, slug: string, ba
             <img src={item.banner} alt={item.name}
               style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
           </div>
-          <div style={{ textAlign: "center", padding: "8px 0 12px" }}>
+          <div style={{ position: "absolute", bottom: 16, left: 0, right: 0, textAlign: "center" }}>
             <span style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, border: "1px solid #C9A84C", padding: "6px 16px" }}>EXPLORE →</span>
           </div>
         </a>
@@ -400,7 +400,7 @@ export default function Home() {
       {/* HERO */}
       <section style={{ minHeight: "auto", padding: isMobile ? "72px 0 0" : "130px 48px 0", position: "relative", overflow: "hidden", background: `radial-gradient(ellipse at 30% 50%, #1a1005 0%, ${D} 65%)` }}>
         {!isMobile && (
-          <motion.div style={{ position: "absolute", inset: -60, x: gridX, y: gridY, backgroundImage: "linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
+          <motion.div style={{ position: "absolute", inset: -60, x: gridX, y: gridY, backgroundImage: "linear-gradient(rgba(201,168,76,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
         )}
 
         {isMobile ? (
