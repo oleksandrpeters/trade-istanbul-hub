@@ -112,16 +112,14 @@ function MobileBannerScroll({ items }: { items: { name: string, slug: string, ba
     <div style={{ display: "flex", overflowX: "auto", gap: 8, paddingLeft: 16, paddingRight: 16, scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
       {items.map(item => (
         <a key={item.slug} href={`/${item.slug}`} style={{
-          textDecoration: "none", flexShrink: 0, width: "100vw", scrollSnapAlign: "start",
+          textDecoration: "none", flexShrink: 0, width: "85vw", scrollSnapAlign: "start",
           position: "relative", overflow: "hidden"
         }}>
           <div style={{ width: "100%", aspectRatio: "4/3", overflow: "hidden" }}>
             <img src={item.banner} alt={item.name}
               style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
           </div>
-          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "16px 12px", background: "linear-gradient(transparent, rgba(0,0,0,0.85))" }}>
-            <div style={{ fontSize: 11, letterSpacing: 2, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>{item.label || item.name}</div>
-          </div>
+          
         </a>
       ))}
     </div>
