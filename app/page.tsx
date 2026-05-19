@@ -536,7 +536,7 @@ export default function Home() {
           <MobileBannerScroll items={SVCS.map(s => ({ name: s.name, slug: s.slug, banner: s.banner }))} />
         </section>
       ) : (
-        <section style={{ padding: "4px 48px 48px" }}>
+        <section style={{ padding: "0px 48px 48px" }}>
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 24 }}>
               <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Services</span>
