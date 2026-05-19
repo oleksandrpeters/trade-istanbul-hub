@@ -120,7 +120,7 @@ function MobileBannerScroll({ items }: { items: { name: string, slug: string, ba
               style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
           </div>
           <div style={{ position: "absolute", bottom: 8, left: 0, right: 0, textAlign: "center" }}>
-            <span style={{ fontSize: 9, letterSpacing: 3, color: #000000, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, border: "1px solid #000000", padding: "6px 16px" }}>EXPLORE →</span>
+            <span style={{ fontSize: 9, letterSpacing: 3, color: "#000000", textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, border: "1px solid #000000", padding: "6px 16px" }}>EXPLORE →</span>
           </div>
         </a>
       ))}
