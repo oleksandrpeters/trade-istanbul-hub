@@ -119,8 +119,8 @@ function MobileBannerScroll({ items }: { items: { name: string, slug: string, ba
             <img src={item.banner} alt={item.name}
               style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
           </div>
-          <div style={{ position: "absolute", bottom: 16, left: 0, right: 0, textAlign: "center" }}>
-            <span style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, border: "1px solid #C9A84C", padding: "6px 16px" }}>EXPLORE →</span>
+          <div style={{ position: "absolute", bottom: 8, left: 0, right: 0, textAlign: "center" }}>
+            <span style={{ fontSize: 9, letterSpacing: 3, color: #000000, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, border: "1px solid #000000", padding: "6px 16px" }}>EXPLORE →</span>
           </div>
         </a>
       ))}
@@ -389,7 +389,7 @@ export default function Home() {
           </div>
         </div>
         {!isMobile && (
-          <div style={{ height: 42, borderTop: "1px solid rgba(201,168,76,0.08)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ height: 42, borderTop: "1px solid rgba(201,168,76,0.15)", display: "flex", alignItems: "center", justifyContent: "center" }}>
             {Object.entries(NAV_MENU).map(([label, items]) => (
               <NavItem key={label} label={label} items={items} />
             ))}
