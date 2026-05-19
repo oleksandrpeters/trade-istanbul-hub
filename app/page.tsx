@@ -138,7 +138,7 @@ function CookieBanner() {
   if (!visible) return null
   return (
     <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-      style={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 500, background: "rgba(6,6,6,0.97)", borderTop: "1px solid rgba(201,168,76,0.2)", padding: "16px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
+      style={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 500, background: "rgba(6,6,6,0.97)", borderTop: "1px solid rgba(201,168,76,0.2)", padding: "16px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
       <p style={{ fontSize: 11, color: PEARL, fontFamily: MONO, letterSpacing: 1, margin: 0, maxWidth: 700 }}>
         We use cookies to improve your experience. By continuing, you agree to our{" "}
         <a href="/cookies" style={{ color: G, textDecoration: "underline" }}>Cookie Policy</a> and{" "}
