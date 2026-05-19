@@ -112,7 +112,7 @@ function MobileBannerScroll({ items }: { items: { name: string, slug: string, ba
     <div style={{ display: "flex", overflowX: "auto", gap: 8, paddingLeft: 0, paddingRight: 0, scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", backgroundImage: "linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px)", backgroundSize: "60px 60px" }}>
       {items.map(item => (
         <a key={item.slug} href={`/${item.slug}`} style={{
-          textDecoration: "none", flexShrink: 0, width: "82vw", scrollSnapAlign: "start",
+          textDecoration: "none", flexShrink: 0, width: "66vw", scrollSnapAlign: "start",
           position: "relative", overflow: "hidden"
         }}>
           <div style={{ width: "100%", aspectRatio: "3/4", overflow: "hidden" }}>
@@ -493,7 +493,7 @@ export default function Home() {
                 <p style={{ fontSize: 14, color: PEARL, lineHeight: 1.85, fontFamily: "Georgia,serif", marginBottom: 24, fontStyle: "italic", fontWeight: 400, maxWidth: 400 }}>
                   "Every factory verified personally. Every shipment backed by my name. This is not a marketplace — this is a partnership built on trust."
                 </p>
-                <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginBottom: 16 }}>
+                <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
                   {Object.entries(FOUNDER_SOCIAL).map(([name, url]) => (
                     <a key={name} href={url} target="_blank" style={{ padding: "8px 16px", border: "1px solid rgba(201,168,76,0.25)", background: "none", color: PEARL, fontSize: 9, letterSpacing: 1, textTransform: "uppercase", textDecoration: "none", fontFamily: MONO, transition: "all .2s", fontWeight: 500 }}
                       onMouseEnter={e => { e.currentTarget.style.borderColor = G; e.currentTarget.style.color = G }}
