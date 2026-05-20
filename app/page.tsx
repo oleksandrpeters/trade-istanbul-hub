@@ -612,7 +612,7 @@ export default function Home() {
             <a href="/cryptocharm" style={{ textDecoration: "none", display: "block" }}>
               {/* Горизонтальный баннер */}
               <div style={{ width: "100%", aspectRatio: "16/9", overflow: "hidden" }}>
-                <img src="/baner-cryptocharm.jpg" alt="CryptoCharm Official"
+                <img src="/banner-cryptocharm.jpg" alt="CryptoCharm Official"
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               </div>
               <div style={{ paddingTop: 12, paddingBottom: 8 }}>
