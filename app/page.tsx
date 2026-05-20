@@ -570,7 +570,7 @@ export default function Home() {
               <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.12)" }} />
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2 }}>
-              {SVCS.map(s => <SvcCard key={s.slug} {...s} isMobile={false} />)}
+              {SVCS.map(s => <SvcCard key={s.slug} {...s} />)}
             </div>
           </div>
         </section>
