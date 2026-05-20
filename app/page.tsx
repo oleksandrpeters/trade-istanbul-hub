@@ -21,16 +21,19 @@ const CATS = [
 ]
 
 const GROUPS = [
-  { title: "Fashion & Style", cats: ["apparel","footwear","fabrics"] },
-  { title: "Beauty & Care", cats: ["cosmetics","perfumes","cleaning"] },
-  { title: "Home & Living", cats: ["furniture","hometextiles","lighting","appliances","tableware"] },
-  { title: "Industry & Trade", cats: ["building","autoparts","food","jewelry"] },
+  { title: "Fashion & Style", cats: ["apparel","footwear","fabrics"], aspect: "2/3" },
+  { title: "Beauty & Care", cats: ["cosmetics","perfumes","cleaning"], aspect: "3/2" },
+  { title: "Home & Living", cats: ["furniture","hometextiles","lighting","appliances","tableware"], aspect: "3/2" },
+  { title: "Industry & Trade", cats: ["building","autoparts","food","jewelry"], aspect: "2/3" },
 ]
 
 const SVCS = [
-  { name: "Business Club", slug: "club", desc: "Private B2B Network · Exclusive Deals", banner: "/banner-club.jpg" },
-  { name: "Business Tours", slug: "tours", desc: "Factory Tours · Istanbul & Bursa", banner: "/banner-tours.jpg" },
-  { name: "Medical Tourism", slug: "medical", desc: "Premium Healthcare · Top Turkish Clinics", banner: "/banner-medical.jpg" },
+  { name: "Business Club", slug: "club", desc: "Private B2B Network · Exclusive Deals", banner: "/banner-club.jpg",
+    title: "Your Strategic Partner in Turkey", subtitle: "Exclusive access to verified Turkish manufacturers and B2B network" },
+  { name: "Business Tours", slug: "tours", desc: "Factory Tours · Istanbul & Bursa", banner: "/banner-tours.jpg",
+    title: "Direct B2B Contacts. Real Deals.", subtitle: "Factory tours in Istanbul & Bursa — see production firsthand" },
+  { name: "Medical Tourism", slug: "medical", desc: "Premium Healthcare · Top Turkish Clinics", banner: "/banner-medical.jpg",
+    title: "Premium Healthcare in Turkey", subtitle: "Top-tier clinics with international standards at competitive prices" },
 ]
 
 const TECH_HUB = [
@@ -106,21 +109,37 @@ const D = "#0A0A0A"
 const PEARL = "#E5E3EE"
 const MONO = "'Courier New', monospace"
 
-// Горизонтальный скролл с вертикальными баннерами
-function MobileBannerScroll({ items }: { items: { name: string, slug: string, banner: string }[] }) {
+// Карточка товара как у Apple — баннер + описание под ним
+function MobileCardScroll({ items, aspectRatio = "2/3", size = "normal" }: {
+  items: { name: string, slug: string, banner: string, title?: string, subtitle?: string }[],
+  aspectRatio?: string,
+  size?: "normal" | "small"
+}) {
+  const cardWidth = size === "small" ? "55vw" : "72vw"
   return (
-    <div style={{ display: "flex", overflowX: "auto", gap: 8, paddingLeft: 0, paddingRight: 0, scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", backgroundImage: "linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px)", backgroundSize: "60px 60px" }}>
+    <div style={{ display: "flex", overflowX: "auto", gap: 16, paddingLeft: 16, paddingRight: 16, scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
       {items.map(item => (
         <a key={item.slug} href={`/${item.slug}`} style={{
-          textDecoration: "none", flexShrink: 0, width: "60vw", scrollSnapAlign: "start",
-          position: "relative", overflow: "hidden"
+          textDecoration: "none", flexShrink: 0, width: cardWidth, scrollSnapAlign: "start"
         }}>
-          <div style={{ width: "100%", aspectRatio: "2/3", overflow: "hidden" }}>
+          {/* БАННЕР */}
+          <div style={{ width: "100%", aspectRatio, overflow: "hidden", borderRadius: 0 }}>
             <img src={item.banner} alt={item.name}
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
           </div>
-          <div style={{ position: "absolute", bottom: 8, left: 0, right: 0, textAlign: "center" }}>
-            <span style={{ fontSize: 9, letterSpacing: 3, color: "#FFFFFF", textTransform: "uppercase", fontFamily: MONO, fontWeight: 600, border: "1px solid #FFFFFF", padding: "4px 10px" }}>EXPLORE →</span>
+          {/* ОПИСАНИЕ ПОД БАННЕРОМ как у Apple */}
+          <div style={{ paddingTop: 12, paddingBottom: 8 }}>
+            <div style={{ fontFamily: "Georgia,serif", fontSize: size === "small" ? 14 : 16, fontWeight: 500, color: PEARL, marginBottom: 6, lineHeight: 1.2 }}>
+              {item.title || item.name}
+            </div>
+            {item.subtitle && (
+              <div style={{ fontSize: 10, color: "rgba(229,227,238,0.6)", fontFamily: MONO, letterSpacing: 1, lineHeight: 1.5, textTransform: "uppercase", marginBottom: 10 }}>
+                {item.subtitle}
+              </div>
+            )}
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 9, color: G, fontFamily: MONO, letterSpacing: 2, textTransform: "uppercase", fontWeight: 600 }}>
+              Explore <span>→</span>
+            </div>
           </div>
         </a>
       ))}
@@ -255,7 +274,7 @@ function CatRow({ name, slug, isMobile }: { name: string, slug: string, isMobile
   )
 }
 
-function SvcCard({ name, slug, desc, isMobile }: { name: string, slug: string, desc: string, isMobile: boolean }) {
+function SvcCard({ name, slug, desc }: { name: string, slug: string, desc: string }) {
   const [hov, setHov] = useState(false)
   return (
     <motion.a href={`/${slug}`}
@@ -279,6 +298,16 @@ function StrategicCard({ name, slug, desc }: { name: string, slug: string, desc:
       <span style={{ fontSize: 16, letterSpacing: 2, textTransform: "uppercase", fontFamily: MONO, color: hov ? D : "#FFFFFF", marginBottom: 8, fontWeight: 600, transition: "color .2s" }}>{name}</span>
       <span style={{ fontSize: 11, letterSpacing: 1, color: hov ? D : PEARL, fontFamily: MONO, textTransform: "uppercase", lineHeight: 1.6, transition: "color .2s", fontWeight: 500 }}>{desc}</span>
     </motion.a>
+  )
+}
+
+// Заголовок секции для мобильной
+function MobileSectionHeader({ title }: { title: string }) {
+  return (
+    <div style={{ padding: "0 16px", display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
+      <span style={{ fontSize: 11, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>{title}</span>
+      <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.15)" }} />
+    </div>
   )
 }
 
@@ -420,7 +449,6 @@ export default function Home() {
             <div style={{ textAlign: "center", padding: "10px 16px", background: "rgba(201,168,76,0.03)", borderBottom: "1px solid rgba(201,168,76,0.08)" }}>
               <div style={{ fontSize: 10, color: G, fontFamily: "Georgia,serif", fontStyle: "italic", letterSpacing: 3 }}>— Personal Guarantee —</div>
             </div>
-            {/* ЗОЛОТАЯ РАМОЧКА */}
             <div style={{ margin: "16px", border: "1px solid rgba(201,168,76,0.12)", padding: "20px 16px" }}>
               <p style={{ fontSize: 9, letterSpacing: 3, color: G, textTransform: "uppercase", marginBottom: 10, fontFamily: MONO, fontWeight: 600 }}>Premium Turkish Export · Managed B2B Sourcing</p>
               <h2 style={{ fontFamily: "Georgia,serif", fontSize: 26, fontWeight: 300, color: "#F5F3EE", marginBottom: 4, lineHeight: 1.1 }}>Oleksandr Peters</h2>
@@ -437,7 +465,6 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            {/* КНОПКИ ПОД РАМОЧКОЙ */}
             <div style={{ padding: "0 16px" }}>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
                 {Object.entries(FOUNDER_SOCIAL).map(([name, url]) => (
@@ -455,7 +482,6 @@ export default function Home() {
             </div>
           </div>
         ) : (
-          /* DESKTOP HERO */
           <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
             <div style={{ textAlign: "center", marginBottom: 32 }}>
               <div style={{ fontSize: 10, letterSpacing: 6, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>
@@ -528,12 +554,13 @@ export default function Home() {
 
       {/* SERVICES */}
       {isMobile ? (
-        <section style={{ padding: "16px 0 24px", background: "#0A0A0A", backgroundImage: "linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px)", backgroundSize: "60px 60px" }}>
-          <div style={{ padding: "0 16px", display: "flex", alignItems: "center", gap: 20, marginBottom: 12 }}>
-            <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Services</span>
-            <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.12)" }} />
-          </div>
-          <MobileBannerScroll items={SVCS.map(s => ({ name: s.name, slug: s.slug, banner: s.banner }))} />
+        <section style={{ padding: "24px 0 32px" }}>
+          <MobileSectionHeader title="Services" />
+          <MobileCardScroll
+            items={SVCS.map(s => ({ name: s.name, slug: s.slug, banner: s.banner, title: s.title, subtitle: s.subtitle }))}
+            aspectRatio="2/3"
+            size="normal"
+          />
         </section>
       ) : (
         <section style={{ padding: "0px 48px 48px" }}>
@@ -551,15 +578,16 @@ export default function Home() {
 
       {/* STRATEGIC VENTURES */}
       {isMobile ? (
-        <section style={{ padding: "0 0 40px" }}>
-          <div style={{ padding: "0 16px", display: "flex", alignItems: "center", gap: 20, marginBottom: 12 }}>
-            <span style={{ fontSize: 9, letterSpacing: 5, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Strategic Ventures</span>
-            <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.12)" }} />
-          </div>
-          <MobileBannerScroll items={[
-            { name: "Tech Hub", slug: "techhub", banner: "/banner-tech.jpg" },
-            { name: "Franchise Hub", slug: "franchisehub", banner: "/banner-franchise.jpg" },
-          ]} />
+        <section style={{ padding: "0 0 32px" }}>
+          <MobileSectionHeader title="Strategic Ventures" />
+          <MobileCardScroll
+            items={[
+              { name: "Tech Hub", slug: "techhub", banner: "/banner-tech.jpg", title: "Turkey Digital Export", subtitle: "SaaS · FinTech · GameDev · $120B market" },
+              { name: "Franchise Hub", slug: "franchisehub", banner: "/banner-franchise.jpg", title: "Scale Your Brand", subtitle: "F&B · Retail · Service franchises in Turkey" },
+            ]}
+            aspectRatio="2/3"
+            size="small"
+          />
         </section>
       ) : (
         <section style={{ padding: "0 48px 16px" }}>
@@ -578,12 +606,28 @@ export default function Home() {
 
       {/* BRAND CryptoCharm */}
       {isMobile ? (
-        <section style={{ padding: "0 0 24px" }}>
-          <div style={{ padding: "0 16px", display: "flex", alignItems: "center", gap: 20, marginBottom: 12 }}>
-            <span style={{ fontSize: 8, letterSpacing: 4, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>Brand</span>
-            <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.08)" }} />
+        <section style={{ padding: "0 0 32px" }}>
+          <MobileSectionHeader title="Brand" />
+          <div style={{ paddingLeft: 16, paddingRight: 16 }}>
+            <a href="/cryptocharm" style={{ textDecoration: "none", display: "block" }}>
+              {/* Горизонтальный баннер */}
+              <div style={{ width: "100%", aspectRatio: "16/9", overflow: "hidden" }}>
+                <img src="/baner-cryptocharm.jpg" alt="CryptoCharm Official"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              </div>
+              <div style={{ paddingTop: 12, paddingBottom: 8 }}>
+                <div style={{ fontFamily: "Georgia,serif", fontSize: 18, fontWeight: 500, color: PEARL, marginBottom: 6 }}>
+                  CryptoCharm Official
+                </div>
+                <div style={{ fontSize: 10, color: "rgba(229,227,238,0.6)", fontFamily: MONO, letterSpacing: 1, lineHeight: 1.5, textTransform: "uppercase", marginBottom: 10 }}>
+                  Luxury Crypto Fashion · Istanbul · Premium Streetwear
+                </div>
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 9, color: G, fontFamily: MONO, letterSpacing: 2, textTransform: "uppercase", fontWeight: 600 }}>
+                  Explore <span>→</span>
+                </div>
+              </div>
+            </a>
           </div>
-          <MobileBannerScroll items={[{ name: "CryptoCharm Official", slug: "cryptocharm", banner: "/baner-cryptocharm.jpg" }]} />
         </section>
       ) : (
         <section style={{ padding: "0 48px 40px" }}>
@@ -600,12 +644,19 @@ export default function Home() {
       {/* КАТЕГОРИИ */}
       {GROUPS.map(group => (
         isMobile ? (
-          <section key={group.title} style={{ padding: "0 0 24px" }}>
-            <div style={{ padding: "0 16px", display: "flex", alignItems: "center", gap: 20, marginBottom: 12 }}>
-              <span style={{ fontSize: 8, letterSpacing: 4, color: G, textTransform: "uppercase", fontFamily: MONO, fontWeight: 600 }}>{group.title}</span>
-              <div style={{ flex: 1, height: 1, background: "rgba(201,168,76,0.08)" }} />
-            </div>
-            <MobileBannerScroll items={CATS.filter(c => group.cats.includes(c.slug)).map(c => ({ name: c.name, slug: c.slug, banner: CAT_BANNERS[c.slug] }))} />
+          <section key={group.title} style={{ padding: "0 0 32px" }}>
+            <MobileSectionHeader title={group.title} />
+            <MobileCardScroll
+              items={CATS.filter(c => group.cats.includes(c.slug)).map(c => ({
+                name: c.name,
+                slug: c.slug,
+                banner: CAT_BANNERS[c.slug],
+                title: c.name,
+                subtitle: "Turkish wholesale · MOQ available"
+              }))}
+              aspectRatio={group.aspect}
+              size="normal"
+            />
           </section>
         ) : (
           <section key={group.title} style={{ padding: "0 48px 48px" }}>
